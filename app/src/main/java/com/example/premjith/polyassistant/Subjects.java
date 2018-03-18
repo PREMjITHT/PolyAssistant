@@ -397,6 +397,14 @@ public class Subjects extends AppCompatActivity {
             }else if (SID==4)
             {
 
+                tvSlot1.setText(getString(R.string.sub_theory_structures_i));
+                tvSlot2.setText(getString(R.string.sub_surveying_ii));
+                tvSlot3.setText(getString(R.string.sub_construction_materials_eng));
+                tvSlot4.setText(getString(R.string.sub_evs));
+                tvSlot5.setText(getString(R.string.sub_building_plan_drawing));
+                tvSlot6.setText(getString(R.string.sub_survey_practical_ii));
+                tvSlot7.setText(getString(R.string.sub_construction_lab));
+                tvSlot8.setText(getString(R.string.sub_concrete_lab));
 
 
 
