@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">Poly Assist</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Forgot your grades..?</string>
+    <string name="slide_1_desc">I will remember for you</string>
+
+    <string name="slide_2_title">Lightning speed ..!</string>
+    <string name="slide_2_desc">Fastest cloud support </string>
+
+    <string name="slide_3_title">Intelligent Assist..!</string>
+    <string name="slide_3_desc">Always watch you and help you</string>
+
+    <string name="slide_4_title">Simple and best UI..!</string>
+    <string name="slide_4_desc">Best User Interface</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="title_activity_user_type">UserType</string>
+
+
+
+    <string name="sign_out">Sign Out</string>
+    <string name="hint_phone_number">Enter Phone Number</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+
+    <string name="sub_data_communication">Data Communication</string>
+    <string name="sub_operating_system">Operating System</string>
+    <string name="sub_data_structure">Data Structure</string>
+    <string name="sub_Computer_System_Hardware">Computer System Hardware</string>
+    <string name="sub_system_admin_lab">System Administration Lab</string>
+    <string name="sub_data_structure_lab">Data Structures Lab</string>
+    <string name="sub_csh_lab">Computer System Hardware Lab</string>
+    <string name="sub_app_dev_lab">Application Development</string>
+
+    <string name="sub_industrial_visit">Industrial Visit</string>
+    <string name="sub_softare_eng">Software Engineering</string>
+    <string name="sub_web_programmin">Web Programming</string>
+    <string name="sub_elective">Elective</string>
+    <string name="sub_microprocessor">Microprocessor</string>
+    <string name="sub_web_lab">Web Programming LAB</string>
+    <string name="sub_mp_lab">Microprocessor LAB</string>
+    <string name="sub_computer_networks">CNE LAB</string>
+    <string name="sub_mc">Microcontroller</string>
+    <string name="sub_mc_lab">Microcontroller LAB</string>
+    <string name="sub_smart_device_programmin">Smart Device Programming</string>
+    <string name="sub_cn">Computer Networks</string>
+    <string name="sub_sdp_lab">SDP LAB</string>
+    <string name="sub_project_seminar">Project-Seminar</string>
+
+    <string name="sub_dcp">DCP</string>
+    <string name="sub__oop_C">OOP C++</string>
+    <string name="sub_ca">Computer Architecture</string>
+    <string name="sub_dbms">DBMS</string>
+    <string name="sub_evs">EVS</string>
+    <string name="sub_dcp_lab">DCP LAB</string>
+    <string name="sub_oop_lab">OOP LAB</string>
+    <string name="sub_dbms_lab">DBMS LAB</string>
+
+    <string name="sub_english_ii">English II</string>
+    <string name="sub_maths_ii">Mathematics II</string>
+    <string name="sub_physics_ii">Physics II</string>
+    <string name="sub_chemistry_ii">Chemistry II</string>
+    <string name="sub_programming_in_c">Programming in C</string>
+    <string name="sub_engineering_graphics">Engineering Graphics</string>
+    <string name="sub_Workshop_practice">Worksop Practice</string>
+    <string name="sub_sub_science_lab">Science LAB</string>
+    <string name="sub_programmin_in_c_lab">C Programmin LAB </string>
+    <string name="sub_life_skill">Life Skill</string>
+
+    <string name="sub_english_i">English I</string>
+    <string name="sub_mathematics_i">Mathematics I</string>
+    <string name="sub_physics_i">Physics I</string>
+    <string name="sub_chemistry_i">Chemistry I</string>
+    <string name="sub_hpe">HPE</string>
+    <string name="sub_computing_fund">Computing Fundamentals</string>
+    <string name="sub_science_lab_i">Science LAB I</string>
+
+<string name="sub_survey_practical_i">Survay Practical I</string>
+<string name="sub_surveying_i">Surveying I</string>
+
+
+    <string name="sub_theory_structures_i">Theory Structures I</string>
+<string name="sub_surveying_ii">Surveying II</string>
+<string name="sub_concrete_lab">Concrete LAB</string>
+<string name="sub_cunstruction_lab">Construction Eng LAB</string>
+    <string name="sub_survey_practical_ii">Survey Practical II</string>
+
+
+
+
+
+
+
+
+</resources>

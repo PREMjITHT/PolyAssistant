@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient"
+    android:gravity="center"
+    tools:context="com.example.premjith.polyassistant.SelectSemester">
+
+
+
+    <TextView
+        android:id="@+id/tv_semester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="serif-monospace"
+        android:textColor="#fff"
+        android:text="Semester"
+        />
+    <TextView
+        android:id="@+id/tv_sem_number"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:text="_"
+        />
+    <NumberPicker
+        android:id="@+id/np"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_select_semester"
+        android:text="Next"
+        android:background="@drawable/roundbutton"
+        android:textColor="#fff"
+
+        />
+
+
+
+
+</LinearLayout>

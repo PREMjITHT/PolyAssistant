@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "988003432720",
+    "firebase_url": "https://polyassistant-d5d81.firebaseio.com",
+    "project_id": "polyassistant-d5d81",
+    "storage_bucket": "polyassistant-d5d81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:988003432720:android:aa3bd516b6ca7e4b",
+        "android_client_info": {
+          "package_name": "com.example.premjith.polyassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "988003432720-misaanlgdd42gq3i84i1mlnedum7a4u1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.premjith.polyassistant",
+            "certificate_hash": "f84f145612ceccab109812fbf1483c05400ee4fe"
+          }
+        },
+        {
+          "client_id": "988003432720-h3pll8ul0br6aq0ptl1qqsabi7cvifmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWrV8hPizv1y7xnKBKO2ufXlivUQSkvqQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "988003432720-h3pll8ul0br6aq0ptl1qqsabi7cvifmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
