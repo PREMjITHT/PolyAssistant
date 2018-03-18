@@ -200,7 +200,16 @@ public class Subjects extends AppCompatActivity {
                 setSubject(SemNumber,BranchNumber);
 
 
-
+                View b1 = findViewById(R.id.lay_slot10);
+                b1.setVisibility(View.VISIBLE);
+                View b2 = findViewById(R.id.lay_slot9);
+                b2.setVisibility(View.VISIBLE);
+                View b3 = findViewById(R.id.lay_slot8);
+                b3.setVisibility(View.VISIBLE);
+                View b4 = findViewById(R.id.lay_slot7);
+                b4.setVisibility(View.VISIBLE);
+                View b5 = findViewById(R.id.lay_slot6);
+                b5.setVisibility(View.VISIBLE);
                 //dump code
                 //finish();
                 //startActivity(getIntent());
@@ -367,11 +376,11 @@ public class Subjects extends AppCompatActivity {
                 tvSlot2.setText(getString(R.string.sub_maths_ii));
                 tvSlot3.setText(getString(R.string.sub_physics_ii));
                 tvSlot4.setText(getString(R.string.sub_chemistry_ii));
-                tvSlot5.setText(getString(R.string.sub_programming_in_c));
+                tvSlot5.setText(getString(R.string.sub_surveying_i));
                 tvSlot6.setText(getString(R.string.sub_engineering_graphics));
                 tvSlot7.setText(getString(R.string.sub_Workshop_practice));
                 tvSlot8.setText(getString(R.string.sub_sub_science_lab));
-                tvSlot9.setText(getString(R.string.sub_programmin_in_c_lab));
+                tvSlot9.setText(getString(R.string.sub_survey_practical_i));
                 tvSlot10.setText(getString(R.string.sub_life_skill));
 
 
