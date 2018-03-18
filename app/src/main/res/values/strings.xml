@@ -91,9 +91,10 @@
     <string name="sub_theory_structures_i">Theory Structures I</string>
 <string name="sub_surveying_ii">Surveying II</string>
 <string name="sub_concrete_lab">Concrete LAB</string>
-<string name="sub_cunstruction_lab">Construction Eng LAB</string>
+<string name="sub_construction_lab">Construction Eng LAB</string>
     <string name="sub_survey_practical_ii">Survey Practical II</string>
-
+    <string name="sub_construction_materials_eng">CM and Eng</string>
+<string name="sub_building_plan_drawing">Building Plan,Drawing</string>
 
 
 
