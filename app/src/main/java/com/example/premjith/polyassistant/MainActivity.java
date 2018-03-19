@@ -70,7 +70,16 @@ public class MainActivity extends AppCompatActivity implements
                     }
                 });
 
+        buttonELECTRONICS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Toast.makeText(MainActivity.this, "Electronics", Toast.LENGTH_SHORT).show();
+                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
+                Inte.putExtra("key",5);
+                startActivity(Inte);
+            }
+        });
 
 
 

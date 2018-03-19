@@ -393,29 +393,70 @@ public class Subjects extends AppCompatActivity {
                 tvSlot6.setText(getString(R.string.sub_survey_practical_ii));
                 tvSlot7.setText(getString(R.string.sub_construction_lab));
                 tvSlot8.setText(getString(R.string.sub_concrete_lab));
+                View b1 = findViewById(R.id.lay_slot10);
+                b1.setVisibility(View.GONE);
+                View b2 = findViewById(R.id.lay_slot9);
+                b2.setVisibility(View.GONE);
 
             }else if (SID==4)
             {
 
-                tvSlot1.setText(getString(R.string.sub_theory_structures_i));
-                tvSlot2.setText(getString(R.string.sub_surveying_ii));
-                tvSlot3.setText(getString(R.string.sub_construction_materials_eng));
-                tvSlot4.setText(getString(R.string.sub_evs));
-                tvSlot5.setText(getString(R.string.sub_building_plan_drawing));
-                tvSlot6.setText(getString(R.string.sub_survey_practical_ii));
-                tvSlot7.setText(getString(R.string.sub_construction_lab));
-                tvSlot8.setText(getString(R.string.sub_concrete_lab));
+                tvSlot1.setText(getString(R.string.sub_theory_structures_ii));
+                tvSlot2.setText(getString(R.string.sub_quantity_surveying_i));
+                tvSlot3.setText(getString(R.string.sub_hydraulics));
+                tvSlot4.setText(getString(R.string.sub_irrigation_engineering));
+                tvSlot5.setText(getString(R.string.sub_survey_practical_iii));
+                tvSlot6.setText(getString(R.string.sub_hydraulics_lab));
+                tvSlot7.setText(getString(R.string.sub_computer_aided_drafting_lab));
+                tvSlot8.setText(getString(R.string.sub_mini_project));
+                View b1 = findViewById(R.id.lay_slot10);
+                b1.setVisibility(View.GONE);
+                View b2 = findViewById(R.id.lay_slot9);
+                b2.setVisibility(View.GONE);
 
 
+
+            }else if (SID==5){
+                tvSlot1.setText(getString(R.string.sub_construction_management_and_safty_engineering));
+                tvSlot2.setText(getString(R.string.sub_structural_design_i));
+                tvSlot3.setText(getString(R.string.sub_geotechnical_engineering));
+                tvSlot4.setText(getString(R.string.sub_quantity_surveying_ii));
+                tvSlot5.setText(getString(R.string.sub_elective));
+                tvSlot6.setText(getString(R.string.sub_geotechnical_engineering_lab));
+                tvSlot7.setText(getString(R.string.sub_computer_appication_lab));
+                tvSlot8.setText(getString(R.string.sub_industrial_visit));
+                View b1 = findViewById(R.id.lay_slot10);
+                b1.setVisibility(View.GONE);
+                View b2 = findViewById(R.id.lay_slot9);
+                b2.setVisibility(View.GONE);
+
+
+
+            }else if (SID==6){
+
+                tvSlot1.setText(getString(R.string.sub_structural_design_ii));
+                tvSlot2.setText(getString(R.string.sub_environmental_engineering));
+                tvSlot3.setText(getString(R.string.sub_transportation_engineering));
+                tvSlot4.setText(getString(R.string.sub_elective));
+                tvSlot5.setText(getString(R.string.sub_structural_and_irrigation_engineering_drawing));
+                tvSlot6.setText(getString(R.string.sub_material_lesting_lab));
+                tvSlot7.setText(getString(R.string.sub_environmental_engineering_lab));
+                tvSlot8.setText(getString(R.string.sub_project_seminar));
+                View b1 = findViewById(R.id.lay_slot10);
+                b1.setVisibility(View.GONE);
+                View b2 = findViewById(R.id.lay_slot9);
+                b2.setVisibility(View.GONE);
 
             }
 
+
+            }
 
         }
 
 
 
-    }
+    
 
 
     @Override

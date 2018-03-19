@@ -98,6 +98,96 @@
 
 
 
+    <string name="sub_construction_materials_and_engineering">CM and Eng</string>
+    <string name="sub_environmental_science_and_disaster_management">Environmental Science and Disaster Management</string>
+    <string name="sub_building_planning_and_drawing">Building Planning,Drawning</string>
+
+
+
+
+    <string name="sub_theory_structures_ii">Theory Structures II</string>
+    <string name="sub_quantity_surveying_i">Quantity Surveying II</string>
+    <string name="sub_hydraulics">Hydraulics</string>
+    <string name="sub_irrigation_engineering">Irrigation Engineering</string>
+    <string name="sub_survey_practical_iii">Survey Practical III</string>
+    <string name="sub_hydraulics_lab">Hydraulics LAB</string>
+    <string name="sub_computer_aided_drafting_lab">Computer Aided Drafting LAB</string>
+    <string name="sub_mini_project">Mini Project</string>
+
+    <string name="sub_construction_management_and_safty_engineering">Construction Management,Safty Eng</string>
+    <string name="sub_structural_design_i">Structural Design I</string>
+    <string name="sub_geotechnical_engineering">Geotechnical Eng</string>
+    <string name="sub_quantity_surveying_ii">Quantity Surveying II</string>
+    <string name="sub_building_maintenance_and_services">BM and Services</string>
+    <string name="sub_cost_effective_construction_green_building">CEC and Green Building</string>
+    <string name="sub_habitat_technology">Habitat Technology</string>
+    <string name="sub_geotechnical_engineering_lab">Geotechnical Eng LAB</string>
+    <string name="sub_computer_appication_lab">Computer Application LAB</string>
+
+
+
+    <string name="sub_structural_design_ii">Structural Design II</string>
+    <string name="sub_environmental_engineering">Environmental Eng</string>
+    <string name="sub_transportation_engineering">Transportation Eng</string>
+    <string name="sub_concrete_technology">Concrete Technology</string>
+    <string name="sub_design_of_pre_stressed_oncrete">Design of Pre-stressed Concrete</string>
+    <string name="sub_ground_improvement_technique">Ground Improvement Technique</string>
+    <string name="sub_structural_and_irrigation_engineering_drawing">Structural,Irrigation Eng Drawing</string>
+    <string name="sub_material_lesting_lab">Material Testing LAB</string>
+    <string name="sub_environmental_engineering_lab">Environmental Eng LAB</string>
+
+
+
+
+    <string name="sub_basic_electrical_engineering">Basic Electrical Eng</string>
+    <string name="sub_basic_electrical_engineering_workshop">Basic Electrical Eng Workshop</string>
+
+
+    <string name="sub_electrical_measuring_instruments">Electrical Measuring Instruments</string>
+    <string name="sub_analog_devices_and_circuits">Analog Devices and Circuits</string>
+    <string name="sub_fundamentals_of_ac_systems">Fundamentals of AC Systems</string>
+    <string name="sub_mechanical_engineering">Mechanical Engineering</string>
+    <string name="sub_electrical_measurements_lab"> Electrical Measurements LAB</string>
+    <string name="sub_electrical_workshop_practice">Electrical Workshop Practice</string>
+    <string name="sub_mechanical_engineering_lab">Mechanical Engineering Lab</string>
+
+
+    <string name="sub_electric_power_generation_transmission_distribution">Electric Power Generation, Transmission B
+Distribution</string>
+    <string name="sub_electrical_estimating_and_costing">Electrical Estimating,Costing</string>
+    <string name="sub_dc_machines">DC Machines</string>
+    <string name="sub_digital_electronics_and_microprocessors">Digital Electronics,Microprocessors</string>
+    <string name="sub_electrical_engineering_drawing">Electrical Engineering Drawing</string>
+    <string name="sub_dc_machines_lab">DC Machines LAB</string>
+    <string name="sub_electrical_computer_aided_drafting_lab">Electrical Computer Aided Drafting Lab</string>
+    <string name="sub_industrial_electrical_engineering_lab">Industrial Electrical Engineering LAB</string>
+
+
+    <string name="sub_industrial_management_and_safety">Industrial Management and Safety</string>
+    <string name="sub_induction_machines">Induction Machines</string>
+    <string name="sub_power_electronics"> Power Electronics</string>
+    <string name="sub_renewable_energy_sources">Renewable Energy Sources</string>
+    <string name="sub_advanced_electrical_measurements_and_instrumentation">Advanced Electrical Measurements and
+Instrumentation</string>
+    <string name="sub_electrical_engineering_materials">Electrical Engineering Materials</string>
+    <string name="sub_ac_machines_lab_i">A C Machines Lab I</string>
+    <string name="sub_electronics_lab">Electronics Lab</string>
+
+
+
+
+    <string name="sub_synchronous_machines_andfhp_motors">Synchronous Machines and FHP Motors</string>
+    <string name="sub_electrical_power_utilization_and_system_protection">Electrical Power Utilization and System Protection</string>
+    <string name="sub_microcontrollers_and_programmable_logic_controllers">Microcontrollers and Programmable logic
+Controllers</string>
+    <string name="sub_electrical_devices_and_controls">Electrical Devices and Controls</string>
+    <string name="sub_electrical_machine_design">Electrical Machine Design</string>
+    <string name="sub_industrial_automation">Industrial Automation</string>
+    <string name="sub_industrial_automation_lab">Industrial Automation LAB</string>
+    <string name="sub_ac_machines_lab_ii">A C Machines Lab II</string>
+
+
+
 
 
 
