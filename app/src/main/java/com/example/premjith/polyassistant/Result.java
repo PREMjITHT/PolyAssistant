@@ -40,9 +40,6 @@ public class Result extends AppCompatActivity {
             finish();
 
                 //number++;
-                Intent no=new Intent(getApplicationContext(),Subjects.class);
-                startActivity(no);
-
                 //numberPicker.setValue(numberPicker.getValue() + 1);
                 //finish();
                 //startActivity(getIntent());
