@@ -157,6 +157,31 @@ public class Subjects extends AppCompatActivity {
                     }
                 } else if (BranchNumber == 2) {
                     Toast.makeText(Subjects.this, "Cgpa of civil", Toast.LENGTH_SHORT).show();  //calculate cgpa of
+                    if (SemNumber==1){
+                        sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 2) + (a6 * 3) + (a7 * 4);
+                        cgpa = sum / 21;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }else if (SemNumber==2){
+                        sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 4) + (a6 * 5) + (a7 * 3)+(a8*3)+(a9*2)+(a1*20);
+                        cgpa = sum / 34;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }else if (SemNumber==3){
+                        sum += (a1 * 6) + (a2 * 6) + (a3 * 6) + (a4 * 3) + (a5 * 3) + (a6 * 2) + (a7 * 2)+(a8*2);
+                        cgpa = sum / 30;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }else if (SemNumber==4){
+                        sum += (a1 * 5) + (a2 * 5) + (a3 * 5) + (a4 * 4) + (a5 * 2) + (a6 * 2) + (a7 * 3)+(a8*5);
+                        cgpa = sum / 31;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }else if (SemNumber==5){
+                        sum += (a1 * 4) + (a2 * 5) + (a3 * 2) + (a4 * 3) + (a5 * 4) + (a6 * 2) + (a7 * 3)+(a8*2);
+                        cgpa = sum / 21;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }else if (SemNumber==6){
+                        sum += (a1 * 4) + (a2 * 4) + (a3 * 5) + (a4 * 4) + (a5 * 3) + (a6 * 2) + (a7 * 2)+(a8*10);
+                        cgpa = sum / 21;
+                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+                    }
 
 
                 }
@@ -398,13 +423,13 @@ public class Subjects extends AppCompatActivity {
                 tvSlot4.setText(getString(R.string.sub_elective));
                 tvSlot5.setText(getString(R.string.sub_structural_and_irrigation_engineering_drawing));
                 tvSlot6.setText(getString(R.string.sub_material_lesting_lab));
-                tvSlot7.setText(getString(R.string.sub_project_seminar));
+                tvSlot7.setText(getString(R.string.sub_environmental_engineering_lab));
+                tvSlot4.setText(getString(R.string.sub_project_seminar));
                 View b1 = findViewById(R.id.lay_slot10);
                 b1.setVisibility(View.GONE);
                 View b2 = findViewById(R.id.lay_slot9);
                 b2.setVisibility(View.GONE);
-                View b3 = findViewById(R.id.lay_slot8);
-                b3.setVisibility(View.GONE);
+
             }
 
 
