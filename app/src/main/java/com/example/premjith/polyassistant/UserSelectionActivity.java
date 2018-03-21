@@ -21,10 +21,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class UserSelectionActivity extends AppCompatActivity {
 Button btnAuth,btnGuest;
 
-    private Toolbar mToolbar;
-    private CoordinatorLayout coordinatorLayout;
-    private LinearLayout linearLayout;
-    FirebaseAuth auth;
+     Toolbar mToolbar;
+     LinearLayout linearLayout;
+     FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

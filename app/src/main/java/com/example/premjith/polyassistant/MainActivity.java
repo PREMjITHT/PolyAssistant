@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sign_out_button:
+
                 Toast.makeText(this, "Logging out..", Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
                 startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));

@@ -80,5 +80,8 @@
         </LinearLayout>
 
     </LinearLayout>
-
+<android.support.v4.widget.ContentLoadingProgressBar
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:id="@+id/load_bar"/>
 </LinearLayout>
