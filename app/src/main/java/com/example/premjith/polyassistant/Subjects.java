@@ -104,16 +104,16 @@ public class Subjects extends AppCompatActivity {
 
 
                 int a1, a2, a3, a4, a5, a6, a7, a8, a9, a10;
-                a1 = sswitch(SpinnerSlot1);
-                a2 = sswitch(SpinnerSlot2);
-                a3 = sswitch(SpinnerSlot3);
-                a4 = sswitch(SpinnerSlot4);
-                a5 = sswitch(SpinnerSlot5);
-                a6 = sswitch(SpinnerSlot6);
-                a7 = sswitch(SpinnerSlot7);
-                a8 = sswitch(SpinnerSlot8);
-                a9 = sswitch(SpinnerSlot9);
-                a10 = sswitch(SpinnerSlot10);
+                a1 = sswitch(SpinnerSlot1,SemNumber);
+                a2 = sswitch(SpinnerSlot2,SemNumber);
+                a3 = sswitch(SpinnerSlot3,SemNumber);
+                a4 = sswitch(SpinnerSlot4,SemNumber);
+                a5 = sswitch(SpinnerSlot5,SemNumber);
+                a6 = sswitch(SpinnerSlot6,SemNumber);
+                a7 = sswitch(SpinnerSlot7,SemNumber);
+                a8 = sswitch(SpinnerSlot8,SemNumber);
+                a9 = sswitch(SpinnerSlot9,SemNumber);
+                a10 = sswitch(SpinnerSlot10,SemNumber);
 
 
                 // tvSemesterInSum.setText(""+number);
@@ -235,11 +235,12 @@ public class Subjects extends AppCompatActivity {
 
     //spinner data check..................................................
 
-    public int sswitch(Spinner v){
+    public int sswitch(Spinner v,int sem){
 
         int z=0;
         String gradeWeb=v.getSelectedItem().toString();
-
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("computer").child(""+sem).push();
+        mDatabase.setValue(gradeWeb);
         switch (gradeWeb){
             case "S":z=10;break;
             case "A":z= 9;break;
