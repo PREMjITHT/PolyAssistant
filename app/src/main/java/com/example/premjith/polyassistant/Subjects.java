@@ -3,6 +3,7 @@ package com.example.premjith.polyassistant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,12 +12,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.security.cert.CertPathValidatorException;
 
 public class Subjects extends AppCompatActivity {
 
     float cgpa=0,sum=0;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     int SemNumber,BranchNumber;
     Button btnNextsem,btnResult;
     String g[]={"S","A","B","C","D","E","F"};
@@ -185,6 +193,14 @@ public class Subjects extends AppCompatActivity {
 
 
                 }
+
+
+                storeData(BranchNumber,SemNumber);
+
+
+
+
+
                 Intent n15 = new Intent(getApplicationContext(), Result.class);
                 n15.putExtra("reslt", cgpa);
                 startActivity(n15);
@@ -232,6 +248,26 @@ public class Subjects extends AppCompatActivity {
 
 
 
+    public void storeData(int b,int s){
+        String a=SpinnerSlot1.getSelectedItem().toString();
+        Toast.makeText(this, ""+a, Toast.LENGTH_SHORT).show();
+        database=FirebaseDatabase.getInstance();
+        myRef=database.getReference("branch").child(""+b).child("semester").child(""+s);
+        myRef.setValue(""+a);
+
+
+    }
+
+    public void reStoreData(int x,int y) {
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("branch").child("" + x).child("semester").child("" + y);
+
+
+    }
+
+
+
+
 
     //spinner data check..................................................
 
@@ -239,8 +275,7 @@ public class Subjects extends AppCompatActivity {
 
         int z=0;
         String gradeWeb=v.getSelectedItem().toString();
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("computer").child(""+sem).push();
-        mDatabase.setValue(gradeWeb);
+
         switch (gradeWeb){
             case "S":z=10;break;
             case "A":z= 9;break;
@@ -257,6 +292,8 @@ public class Subjects extends AppCompatActivity {
     return z;
 
     }
+
+    //save data..................................
 
 
 
