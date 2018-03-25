@@ -10,28 +10,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".WelcomeActivity">
-
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
-
         </activity>
-        <activity
-            android:name=".UserSelectionActivity"
-            android:label="@string/title_activity_welcome"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" />
-
-        <activity android:name=".PhoneAuthActivity"/>
         <activity android:name=".SelectSemester" />
-
+        <activity android:name=".UserSelectionActivity"/>
+        <activity android:name=".PhoneAuthActivity"/>
         <activity android:name=".Result" />
         <activity android:name=".Subjects" />
 
