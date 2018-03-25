@@ -24,6 +24,7 @@ Button btnAuth,btnGuest;
      Toolbar mToolbar;
      LinearLayout linearLayout;
      FirebaseAuth auth;
+     int u=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +94,10 @@ Button btnAuth,btnGuest;
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(UserSelectionActivity.this, "Under Construction...!", Toast.LENGTH_SHORT).show();
+u=2;
+                Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                i.putExtra("U","a");
+                startActivity(i);
             }
         });
 
@@ -103,6 +107,7 @@ Button btnAuth,btnGuest;
             public void onClick(View v) {
 
                 Intent ii = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+                //ii.putExtra("U",1);
                 startActivity(ii);
 
 

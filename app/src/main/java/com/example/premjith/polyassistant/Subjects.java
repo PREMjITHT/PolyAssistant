@@ -25,7 +25,8 @@ public class Subjects extends AppCompatActivity {
 
     int supp=0;
     FirebaseAuth mAuth;
-    float cgpa=0,sum=0;
+    float cgpa=0,cgpaSum=0,sum=0,aggr=0;
+            int cgpaCount=1;
     FirebaseDatabase database;
     DatabaseReference myRef;
     int SemNumber,BranchNumber,nCount=0;
@@ -101,11 +102,11 @@ public class Subjects extends AppCompatActivity {
         SpinnerSlot10.setAdapter(adptr10);
         //Getting semester id from select semester activity
         SemNumber = getIntent().getExtras().getInt("MY_SEM");
-        //Toast.makeText(this, "sem=" + SemNumber, Toast.LENGTH_SHORT).show();
+
 
 
         BranchNumber = getIntent().getExtras().getInt("MY_BRANCH");
-        //Toast.makeText(this, "branch=" + BranchNumber, Toast.LENGTH_SHORT).show();
+
         if (BranchNumber==1){
             if (SemNumber==1){
                 nCount=6;
@@ -134,7 +135,7 @@ public class Subjects extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null) {
             pNumber = mAuth.getCurrentUser().getPhoneNumber();
-            Toast.makeText(this, "PHONE NUMBER=" + pNumber, Toast.LENGTH_SHORT).show();
+
 
         }
 
@@ -172,14 +173,14 @@ public class Subjects extends AppCompatActivity {
 
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 2) + (a6 * 4);
                         cgpa = sum / 21;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
 
 
                     } else if (SemNumber == 2) {
 
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 4) + (a6 * 5) + (a7 * 3) + (a8 * 3) + (a9 * 2) + (a10 * 2);
                         cgpa = sum / 34;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
 
 
                     } else if (SemNumber == 3) {
@@ -187,52 +188,50 @@ public class Subjects extends AppCompatActivity {
 
                         sum += (a1 * 4) + (a2 * 5) + (a3 * 4) + (a4 * 4) + (a5 * 3) + (a6 * 3) + (a7 * 3) + (a8 * 3);
                         cgpa = sum / 29;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
 
                     } else if (SemNumber == 4) {
 
                         sum += (a1 * 4) + (a2 * 4) + (a3 * 5) + (a4 * 4) + (a5 * 3) + (a6 * 3) + (a7 * 3) + (a8 * 5);
                         cgpa = sum / 31;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
 
 
                     } else if (SemNumber == 5) {
                         sum += (a1 * 4) + (a2 * 4) + (a3 * 4) + (a4 * 4) + (a5 * 2) + (a6 * 2) + (a7 * 2) + (a8 * 3);
                         cgpa = sum / 25;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
 
                     } else if (SemNumber == 6) {
                         sum += (a1 * 5) + (a2 * 4) + (a3 * 5) + (a4 * 5) + (a5 * 3) + (a6 * 3) + (a7 * 10);
                         cgpa = sum / 35;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
 
                     }
                 } else if (BranchNumber == 2) {
-                    Toast.makeText(Subjects.this, "Cgpa of civil", Toast.LENGTH_SHORT).show();  //calculate cgpa of
+                      //calculate cgpa of
                     if (SemNumber==1){
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 2) + (a6 * 4);
                         cgpa = sum / 21;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
                     }else if (SemNumber==2){
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 4) + (a6 * 5) + (a7 * 3)+(a8*3)+(a9*2)+(a1*2);
                         cgpa = sum / 34;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
                     }else if (SemNumber==3){
                         sum += (a1 * 6) + (a2 * 6) + (a3 * 6) + (a4 * 3) + (a5 * 3) + (a6 * 2) + (a7 * 2)+(a8*2);
                         cgpa = sum / 30;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
                     }else if (SemNumber==4){
                         sum += (a1 * 5) + (a2 * 5) + (a3 * 5) + (a4 * 4) + (a5 * 2) + (a6 * 2) + (a7 * 3)+(a8*5);
                         cgpa = sum / 31;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
                     }else if (SemNumber==5){
                         sum += (a1 * 4) + (a2 * 5) + (a3 * 2) + (a4 * 3) + (a5 * 4) + (a6 * 2) + (a7 * 3)+(a8*2);
                         cgpa = sum / 25;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
+
                     }else if (SemNumber==6){
                         sum += (a1 * 4) + (a2 * 4) + (a3 * 5) + (a4 * 4) + (a5 * 3) + (a6 * 2) + (a7 * 2)+(a8*10);
                         cgpa = sum / 34;
-                        Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -244,11 +243,19 @@ public class Subjects extends AppCompatActivity {
                 myRef=database.getReference().child(pNumber).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
 
-
-
+                cgpaSum+=cgpa;
+                if (cgpaCount!=0) {
+                     aggr = cgpaSum / (cgpaCount );
+                }else {
+                    aggr=cgpaSum;
+                }
 
                 Intent n15 = new Intent(getApplicationContext(), Result.class);
                 n15.putExtra("reslt", cgpa);
+                n15.putExtra("phon",pNumber);
+                n15.putExtra("S", SemNumber);
+                n15.putExtra("B",BranchNumber);
+                n15.putExtra("A",aggr);
                 startActivity(n15);
 
 
@@ -291,6 +298,11 @@ public class Subjects extends AppCompatActivity {
                 else {
                     Toast.makeText(Subjects.this, "Course completed...!", Toast.LENGTH_SHORT).show();
                 }
+
+                cgpaCount++;
+
+
+
 
 
 
@@ -342,11 +354,11 @@ public class Subjects extends AppCompatActivity {
          if(a10==6)
         supp++;
 
-            Toast.makeText(this, "supply="+supp, Toast.LENGTH_SHORT).show();
+
         database=FirebaseDatabase.getInstance();
         myRef=database.getReference().child(pNumber).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("supply");
         myRef.setValue(""+supp);
-       // Toast.makeText(this, ""+a1, Toast.LENGTH_SHORT).show();
+
         database=FirebaseDatabase.getInstance();
 
         if(b==1){
@@ -935,10 +947,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
         }
-            else
-         {
-            Toast.makeText(this, "Nooooo", Toast.LENGTH_SHORT).show();
-        }
+
 
 
     }

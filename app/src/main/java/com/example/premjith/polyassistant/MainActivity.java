@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements
 
     private static final String TAG = "PhoneAuthActivity";
     private FirebaseAuth mAuth;
+    String u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,18 @@ public class MainActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_main);
         Button mSignOutButton =  findViewById(R.id.sign_out_button);
         TextView fireBaseId =  findViewById(R.id.detail);
+
+
+
+
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null){
             fireBaseId.setText(mAuth.getCurrentUser().getPhoneNumber());
         }
         mSignOutButton.setOnClickListener(this);
+
+
+
 
 
         Button buttonCT=findViewById(R.id.btn_branch_Computer);
