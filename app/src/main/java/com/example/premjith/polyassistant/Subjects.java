@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,14 +23,18 @@ import java.security.cert.CertPathValidatorException;
 
 public class Subjects extends AppCompatActivity {
 
+    int supp=0;
+    FirebaseAuth mAuth;
     float cgpa=0,sum=0;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    int SemNumber,BranchNumber;
+    int SemNumber,BranchNumber,nCount=0;
     Button btnNextsem,btnResult;
-    String g[]={"S","A","B","C","D","E","F"};
+    Spinner spinnerFun;
+    String g[]={"S","A","B","C","D","E","F"},pNumber;
     TextView tvSlot1,tvSlot2,tvSlot3,tvSlot4,tvSlot5,tvSlot6,tvSlot7,tvSlot8,tvSlot9,tvSlot10;
     Spinner SpinnerSlot1,SpinnerSlot2,SpinnerSlot3,SpinnerSlot4,SpinnerSlot5,SpinnerSlot6,SpinnerSlot7,SpinnerSlot8,SpinnerSlot9,SpinnerSlot10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,15 +101,51 @@ public class Subjects extends AppCompatActivity {
         SpinnerSlot10.setAdapter(adptr10);
         //Getting semester id from select semester activity
         SemNumber = getIntent().getExtras().getInt("MY_SEM");
-        Toast.makeText(this, "sem=" + SemNumber, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "sem=" + SemNumber, Toast.LENGTH_SHORT).show();
 
 
         BranchNumber = getIntent().getExtras().getInt("MY_BRANCH");
-        Toast.makeText(this, "branch=" + BranchNumber, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "branch=" + BranchNumber, Toast.LENGTH_SHORT).show();
+        if (BranchNumber==1){
+            if (SemNumber==1){
+                nCount=6;
+            }else if (SemNumber==2){
+                nCount=10;
+            }else if (SemNumber==3||SemNumber==4||SemNumber==5){
+                nCount=8;
+            }
+            else if (SemNumber==6){
+                nCount=7;
+            }
+        }else if (BranchNumber==2){
+            if (SemNumber==1){
+                nCount=6;
+            }else if (SemNumber==2){
+                nCount=10;
+            }else if (SemNumber==3||SemNumber==4||SemNumber==5||SemNumber==6){
+                nCount=8;
+            }
+
+        }
+
 
 
         setSubject(SemNumber, BranchNumber);
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth!=null) {
+            pNumber = mAuth.getCurrentUser().getPhoneNumber();
+            Toast.makeText(this, "PHONE NUMBER=" + pNumber, Toast.LENGTH_SHORT).show();
 
+        }
+
+        reStoreData(BranchNumber, SemNumber,nCount);
+            /* reStoreData(BranchNumber,SemNumber,SpinnerSlot2);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot3);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot4);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot5);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot6);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot7);
+        reStoreData(BranchNumber,SemNumber,SpinnerSlot8);*/
 
         btnResult.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,18 +169,21 @@ public class Subjects extends AppCompatActivity {
                 if (BranchNumber == 1) {
                     //CALCULATING CGPA OF COMPUTER
                     if (SemNumber == 1) {
+
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 2) + (a6 * 4);
                         cgpa = sum / 21;
                         Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
 
 
                     } else if (SemNumber == 2) {
+
                         sum += (a1 * 3) + (a2 * 6) + (a3 * 3) + (a4 * 3) + (a5 * 4) + (a6 * 5) + (a7 * 3) + (a8 * 3) + (a9 * 2) + (a10 * 2);
                         cgpa = sum / 34;
                         Toast.makeText(Subjects.this, "CGPA=" + cgpa, Toast.LENGTH_SHORT).show();
 
 
                     } else if (SemNumber == 3) {
+
 
                         sum += (a1 * 4) + (a2 * 5) + (a3 * 4) + (a4 * 4) + (a5 * 3) + (a6 * 3) + (a7 * 3) + (a8 * 3);
                         cgpa = sum / 29;
@@ -196,7 +240,9 @@ public class Subjects extends AppCompatActivity {
 
 
                 storeData(BranchNumber,SemNumber);
-
+                database=FirebaseDatabase.getInstance();
+                myRef=database.getReference().child(pNumber).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
+                myRef.setValue(""+cgpa);
 
 
 
@@ -226,13 +272,27 @@ public class Subjects extends AppCompatActivity {
                     bb3.setVisibility(View.VISIBLE);
                     View bb4 = findViewById(R.id.lay_slot7);
                     bb4.setVisibility(View.VISIBLE);
+                    SpinnerSlot1.setSelection(0);
+                    SpinnerSlot2.setSelection(0);
+                    SpinnerSlot3.setSelection(0);
+                    SpinnerSlot4.setSelection(0);
+                    SpinnerSlot5.setSelection(0);
+                    SpinnerSlot6.setSelection(0);
+                    SpinnerSlot7.setSelection(0);
+                    SpinnerSlot8.setSelection(0);
+                    SpinnerSlot9.setSelection(0);
+                    SpinnerSlot10.setSelection(0);
                     SemNumber++;
                     setSubject(SemNumber, BranchNumber);
 
-                }
+                        reStoreData(BranchNumber, SemNumber,nCount);
+
+                     }
                 else {
                     Toast.makeText(Subjects.this, "Course completed...!", Toast.LENGTH_SHORT).show();
                 }
+
+
 
 
                 //dump code
@@ -246,26 +306,642 @@ public class Subjects extends AppCompatActivity {
     }
 
 
-
+//method for storing daata
 
     public void storeData(int b,int s){
-        String a=SpinnerSlot1.getSelectedItem().toString();
-        Toast.makeText(this, ""+a, Toast.LENGTH_SHORT).show();
+        int n=0;
+        supp=0;
+        int  a1=SpinnerSlot1.getSelectedItemPosition();
+        int a2=SpinnerSlot2.getSelectedItemPosition();
+        int a3=SpinnerSlot3.getSelectedItemPosition();
+        int a4=SpinnerSlot4.getSelectedItemPosition();
+        int a5=SpinnerSlot5.getSelectedItemPosition();
+        int a6=SpinnerSlot6.getSelectedItemPosition();
+        int a7=SpinnerSlot7.getSelectedItemPosition();
+        int a8=SpinnerSlot8.getSelectedItemPosition();
+        int a9=SpinnerSlot9.getSelectedItemPosition();
+        int a10=SpinnerSlot10.getSelectedItemPosition();
+        if (a1==6)
+            supp++;
+         if (a2==6)
+            supp++;
+         if (a3==6)
+            supp++;
+         if(a4==6)
+            supp++;
+         if(a5==6)
+          supp++;
+         if(a6==6)
+            supp++;
+         if(a7==6)
+            supp++;
+         if(a8==6)
+            supp++;
+         if(a9==6)
+            supp++;
+         if(a10==6)
+        supp++;
+
+            Toast.makeText(this, "supply="+supp, Toast.LENGTH_SHORT).show();
         database=FirebaseDatabase.getInstance();
-        myRef=database.getReference("branch").child(""+b).child("semester").child(""+s);
-        myRef.setValue(""+a);
+        myRef=database.getReference().child(pNumber).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("supply");
+        myRef.setValue(""+supp);
+       // Toast.makeText(this, ""+a1, Toast.LENGTH_SHORT).show();
+        database=FirebaseDatabase.getInstance();
+
+        if(b==1){
+            if (s==1){
+
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+            }else if (s==2){
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+                saveSlote(b,s,7,a7);
+                saveSlote(b,s,8,a8);
+                saveSlote(b,s,9,a9);
+                saveSlote(b,s,10,a10);
+
+            }else if (s==3||s==4||s==5){
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+                saveSlote(b,s,7,a7);
+                saveSlote(b,s,8,a8);
+
+             }else if (s==6){
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+                saveSlote(b,s,7,a7);
+
+            }
+
+        }else if (b==2){
+            if (s==1){
+
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+            }else if (s==2){
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+                saveSlote(b,s,7,a7);
+                saveSlote(b,s,8,a8);
+                saveSlote(b,s,9,a9);
+                saveSlote(b,s,10,a10);
+
+            }else if (s==3||s==4||s==5||s==6){
+                saveSlote(b,s,1,a1);
+                saveSlote(b,s,2,a2);
+                saveSlote(b,s,3,a3);
+                saveSlote(b,s,4,a4);
+                saveSlote(b,s,5,a5);
+                saveSlote(b,s,6,a6);
+                saveSlote(b,s,7,a7);
+                saveSlote(b,s,8,a8);
+
+            }
+        }
+        else {
+            Toast.makeText(this, "Not entered", Toast.LENGTH_SHORT).show();
+        }
+
+
 
 
     }
+//simple method for storing the grades
+    public void saveSlote(int b,int s,int n,int a){
+            myRef=database.getReference(""+pNumber).child("branch").child(""+b).child("semester").child(""+s).child("slote").child(""+n);
+            myRef.setValue(""+a);
+    }
 
-    public void reStoreData(int x,int y) {
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("branch").child("" + x).child("semester").child("" + y);
+    public void reStoreData(int b, int s,int c) {
+
+        if (c==6){
+
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            //readData(spin);
+
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+            }}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+            if (dataSnapshot.exists()){
+                SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+            }}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                    SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
+                    SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+
+
+
+        }else if (c==10){
+
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            //readData(spin);
+
+
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot7.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+8);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot8.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+9);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot9.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+10);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot10.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+
+
+            }else if (c==8) {
+
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            //readData(spin);
+
+
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot7.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+8);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot8.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+        }else if (c==7){
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            //readData(spin);
+
+
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot7.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+            else
+         {
+            Toast.makeText(this, "Nooooo", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
-
-
 
 
 
@@ -462,7 +1138,7 @@ public class Subjects extends AppCompatActivity {
                 tvSlot5.setText(getString(R.string.sub_structural_and_irrigation_engineering_drawing));
                 tvSlot6.setText(getString(R.string.sub_material_lesting_lab));
                 tvSlot7.setText(getString(R.string.sub_environmental_engineering_lab));
-                tvSlot4.setText(getString(R.string.sub_project_seminar));
+                tvSlot8.setText(getString(R.string.sub_project_seminar));
                 View b1 = findViewById(R.id.lay_slot10);
                 b1.setVisibility(View.GONE);
                 View b2 = findViewById(R.id.lay_slot9);
