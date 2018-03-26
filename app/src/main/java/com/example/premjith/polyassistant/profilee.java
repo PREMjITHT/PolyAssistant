@@ -2,47 +2,38 @@ package com.example.premjith.polyassistant;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.transition.Slide;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-public class MainActivity extends AppCompatActivity
+public class profilee extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
     NavigationView navigationView;
-    android.support.v7.widget.Toolbar toolbar=null;
-
-    private static final String TAG = "PhoneAuthActivity";
-    private FirebaseAuth mAuth;
+    Toolbar toolbar=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_profilee);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       /* Button mSignOutButton =  findViewById(R.id.sign_out_button);
-        TextView fireBaseId =  findViewById(R.id.detail);
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth!=null){
-            fireBaseId.setText(mAuth.getCurrentUser().getPhoneNumber());
-        }
-        mSignOutButton.setOnClickListener(this);*/
+
+        //We dont need this.
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -51,63 +42,8 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        Button buttonCT=findViewById(R.id.btn_branch_Computer);
-        Button buttonMECH=findViewById(R.id.btn_branch_mech);
-        Button buttonCIVIL=findViewById(R.id.btn_branch_Civil);
-        Button buttonELECTRICAL=findViewById(R.id.btn_branch_electrical);
-        Button buttonELECTRONICS=findViewById(R.id.btn_branch_electronics);
-        buttonCT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Computer", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",1);
-                startActivity(Inte);
-
-            }
-        });
-
-        buttonCIVIL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Toast.makeText(MainActivity.this, "Civil", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",2);
-                startActivity(Inte);
-
-
-            }
-        });
-
-        buttonMECH.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(MainActivity.this, "Mechanical", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",3);
-                startActivity(Inte);
-            }
-        });
-
-        buttonELECTRONICS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(MainActivity.this, "Electronics", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",5);
-                startActivity(Inte);
-            }
-        });
-
-
-
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -152,32 +88,33 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_Profile:
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-             /*  Intent i1= new Intent(MainActivity.this,profilee.class);
-                startActivity(i1);*/
+                Intent i1= new Intent(profilee.this,profilee.class);
+                i1.putExtra("key",1);
+                startActivity(i1);
                 break;
-            /*case R.id.nav_Branches:
+           /* case R.id.nav_Branches:
                 Toast.makeText(this, "Branches", Toast.LENGTH_SHORT).show();
-                Intent i2= new Intent(MainActivity.this,MainActivity.class);
+                Intent i2= new Intent(profilee.this,MainActivity.class);
                 i2.putExtra("key",2);
                 startActivity(i2);
                 break;
             case R.id.nav_Semester:
                 Toast.makeText(this, "Semester", Toast.LENGTH_SHORT).show();
-                Intent i3= new Intent(Navigation.this,SelectSemester.class);
+               /* Intent i3= new Intent(Navigation.this,SelectSemester.class);
                 i3.putExtra("key",3);
                 startActivity(i3);
-                break;
-            case R.id.nav_Result:
-                Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
-                Intent i4= new Intent(Navigation.this,Result.class);
+               */// break;
+           // case R.id.nav_Result:
+           //     Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
+              /*  Intent i4= new Intent(Navigation.this,Result.class);
                 i4.putExtra("key",4);
                 startActivity(i4);
-               break;*/
+                *///break;
             case R.id.nav_About:
-                Toast.makeText(this, "Version 1.0 beta", Toast.LENGTH_SHORT).show();
-                //Intent i5= new Intent(MainActivity.this,About.class);
-
-                //startActivity(i5);
+                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                Intent i5= new Intent(profilee.this,About.class);
+                i5.putExtra("key",5);
+                startActivity(i5);
                 break;
             case R.id.nav_Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
@@ -202,13 +139,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
-
-
-
-
-
-
 }
+

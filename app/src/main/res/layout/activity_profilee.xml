@@ -9,10 +9,9 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/activity_main2sample"
+        layout="@layout/app_bar_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -24,5 +23,5 @@
         app:menu="@menu/activity_home_drawer_new" />
 
 
-
 </android.support.v4.widget.DrawerLayout>
+    <!-- copy from activity_home and paste it here.-->

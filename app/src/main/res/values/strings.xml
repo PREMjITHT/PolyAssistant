@@ -185,7 +185,10 @@ Controllers</string>
     <string name="sub_industrial_automation">Industrial Automation</string>
     <string name="sub_industrial_automation_lab">Industrial Automation LAB</string>
     <string name="sub_ac_machines_lab_ii">A C Machines Lab II</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="action_settings">Settings</string>
 
 
 
