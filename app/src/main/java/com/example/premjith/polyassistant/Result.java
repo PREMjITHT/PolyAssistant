@@ -53,7 +53,23 @@ public class Result extends AppCompatActivity {
 
 
             database= FirebaseDatabase.getInstance();
+        myRef=database.getReference().child(""+p).child("branch").child(""+b).child("total");
+        myRef.setValue(""+rr);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String sss = dataSnapshot.getValue().toString();
+                    btnAggragate.setText(sss);
 
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
             myRef=database.getReference().child(""+p).child("branch").child(""+b).child("semester").child(""+s).child("supply");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
