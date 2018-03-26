@@ -3,6 +3,8 @@ package com.example.premjith.polyassistant;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
+import android.transition.Slide;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -18,8 +20,6 @@ public class SelectSemester extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_sem);
-
-
           tvSem = findViewById(R.id.tv_semester);
           tvSemNumber = findViewById(R.id.tv_sem_number);
           branchID= getIntent().getExtras().getInt("key");
@@ -61,5 +61,8 @@ public class SelectSemester extends AppCompatActivity {
 
 
     }
+
+
+
 
 }
