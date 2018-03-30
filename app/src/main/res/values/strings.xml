@@ -24,7 +24,6 @@
     <string name="title_activity_user_type">UserType</string>
 
 
-
     <string name="sign_out">Sign Out</string>
     <string name="hint_phone_number">Enter Phone Number</string>
     <string name="hint_verification_code">Verification Code</string>
@@ -84,25 +83,22 @@
     <string name="sub_computing_fund">Computing Fundamentals</string>
     <string name="sub_science_lab_i">Science LAB I</string>
 
-<string name="sub_survey_practical_i">Survay Practical I</string>
-<string name="sub_surveying_i">Surveying I</string>
+    <string name="sub_survey_practical_i">Survay Practical I</string>
+    <string name="sub_surveying_i">Surveying I</string>
 
 
     <string name="sub_theory_structures_i">Theory Structures I</string>
-<string name="sub_surveying_ii">Surveying II</string>
-<string name="sub_concrete_lab">Concrete LAB</string>
-<string name="sub_construction_lab">Construction Eng LAB</string>
+    <string name="sub_surveying_ii">Surveying II</string>
+    <string name="sub_concrete_lab">Concrete LAB</string>
+    <string name="sub_construction_lab">Construction Eng LAB</string>
     <string name="sub_survey_practical_ii">Survey Practical II</string>
     <string name="sub_construction_materials_eng">CM and Eng</string>
-<string name="sub_building_plan_drawing">Building Plan,Drawing</string>
-
+    <string name="sub_building_plan_drawing">Building Plan,Drawing</string>
 
 
     <string name="sub_construction_materials_and_engineering">CM and Eng</string>
     <string name="sub_environmental_science_and_disaster_management">Environmental Science and Disaster Management</string>
     <string name="sub_building_planning_and_drawing">Building Planning,Drawning</string>
-
-
 
 
     <string name="sub_theory_structures_ii">Theory Structures II</string>
@@ -125,7 +121,6 @@
     <string name="sub_computer_appication_lab">Computer Application LAB</string>
 
 
-
     <string name="sub_structural_design_ii">Structural Design II</string>
     <string name="sub_environmental_engineering">Environmental Eng</string>
     <string name="sub_transportation_engineering">Transportation Eng</string>
@@ -135,8 +130,6 @@
     <string name="sub_structural_and_irrigation_engineering_drawing">Structural,Irrigation Eng Drawing</string>
     <string name="sub_material_lesting_lab">Material Testing LAB</string>
     <string name="sub_environmental_engineering_lab">Environmental Eng LAB</string>
-
-
 
 
     <string name="sub_basic_electrical_engineering">Basic Electrical Eng</string>
@@ -172,8 +165,7 @@ Instrumentation</string>
     <string name="sub_electrical_engineering_materials">Electrical Engineering Materials</string>
     <string name="sub_ac_machines_lab_i">A C Machines Lab I</string>
     <string name="sub_electronics_lab">Electronics Lab</string>
-<string name="sub_science_lab_ii">Science LAB II</string>
-
+    <string name="sub_science_lab_ii">Science LAB II</string>
 
 
     <string name="sub_synchronous_machines_andfhp_motors">Synchronous Machines and FHP Motors</string>
@@ -189,10 +181,6 @@ Controllers</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
-
-
-
 
 
 </resources>

@@ -43,8 +43,6 @@ public class Subjects extends AppCompatActivity {
         //reference..........................................................
         btnResult = findViewById(R.id.btn_Result);
         btnNextsem = findViewById(R.id.btn_Next_Sem_Result);
-
-
         SpinnerSlot1 = findViewById(R.id.spinner_slot1);
         SpinnerSlot2 = findViewById(R.id.spinner_slot2);
         SpinnerSlot3 = findViewById(R.id.spinner_slot3);
@@ -135,7 +133,7 @@ public class Subjects extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null) {
             pNumber = mAuth.getCurrentUser().getPhoneNumber();
-
+            Toast.makeText(this, "Phone number:"+pNumber, Toast.LENGTH_SHORT).show();
 
         }
 

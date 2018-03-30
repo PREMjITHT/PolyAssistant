@@ -19,20 +19,20 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class UserSelectionActivity extends AppCompatActivity {
-Button btnAuth,btnGuest;
+Button btnAdmin,btnGuest,btnSuperAdmin;
 
      Toolbar mToolbar;
      LinearLayout linearLayout;
-     FirebaseAuth auth;
-     int u=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_selection);
         // Toolbar toolbar =findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        btnAuth = findViewById(R.id.btn_user_phoneAuth);
+        btnAdmin = findViewById(R.id.btn_user_admin);
         btnGuest = findViewById(R.id.btn_user_guest);
+        //btnSuperAdmin=findViewById(R.id.btn_super_admin);
         linearLayout= findViewById(R.id.line_snackbar);
         mToolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -73,19 +73,11 @@ Button btnAuth,btnGuest;
             }
         }
 
-
-
-
         findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // We normally won't show the welcome slider again in real app
-                // but this is for testing
                 PrefManager prefManager = new PrefManager(getApplicationContext());
-
-                // make first time launch TRUE
                 prefManager.setFirstTimeLaunch(true);
-
                 startActivity(new Intent(UserSelectionActivity.this, WelcomeActivity.class));
                 finish();
             }
@@ -94,25 +86,31 @@ Button btnAuth,btnGuest;
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-u=2;
-                Intent i=new Intent(getApplicationContext(),MainActivity.class);
-                i.putExtra("U","a");
+                Intent i=new Intent(getApplicationContext(),StudentSearch.class);
                 startActivity(i);
             }
         });
 
 
-        btnAuth.setOnClickListener(new View.OnClickListener() {
+        btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent ii = new Intent(getApplicationContext(), PhoneAuthActivity.class);
-                //ii.putExtra("U",1);
                 startActivity(ii);
 
 
             }
         });
+        findViewById(R.id.btn_user_super_admin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ii = new Intent(getApplicationContext(),PhoneAuthActivity.class);
+                startActivity(ii);
+            }
+        });
+
+
 
     }
     private boolean isNetworkAvailable() {

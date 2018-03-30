@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +47,7 @@ public class Result extends AppCompatActivity {
         }else {
             tvComment.setText("Keep trying");
         }
-        Toast.makeText(this, ""+p+b+s, Toast.LENGTH_SHORT).show();
+
 
 
             database= FirebaseDatabase.getInstance();
@@ -75,11 +73,12 @@ public class Result extends AppCompatActivity {
                 @Override
 
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Toast.makeText(Result.this, "entered", Toast.LENGTH_SHORT).show();if (dataSnapshot.exists()){
+
+                    if (dataSnapshot.exists()){
 
                         String sss=dataSnapshot.getValue().toString();
                         btnSupply.setText(sss);
-                        Toast.makeText(Result.this, "result supply="+sss, Toast.LENGTH_SHORT).show();
+
 
                 }}
 
@@ -94,12 +93,12 @@ public class Result extends AppCompatActivity {
             @Override
 
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Toast.makeText(Result.this, "entered", Toast.LENGTH_SHORT).show();
+
                 if (dataSnapshot.exists()){
 
                     String ss=dataSnapshot.getValue().toString();
                     btnResultView.setText(ss);
-                    Toast.makeText(Result.this, "result cgpa="+ss, Toast.LENGTH_SHORT).show();
+
 
                 }}
 

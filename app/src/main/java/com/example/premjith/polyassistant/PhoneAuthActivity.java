@@ -24,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -35,13 +37,14 @@ import java.util.concurrent.TimeUnit;
 public class PhoneAuthActivity extends AppCompatActivity implements
         View.OnClickListener {
 ProgressBar pp;
-    EditText mPhoneNumberField, mVerificationField;
+    EditText mPhoneNumberField, mVerificationField,txtUniqueId,txtUsername;
     Button mStartButton, mVerifyButton, mResendButton;
-
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-    String mVerificationId;
+    String mVerificationId,p;
 
     private static final String TAG = "PhoneAuthActivity";
 
@@ -50,8 +53,8 @@ ProgressBar pp;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
         pp=findViewById(R.id.load_bar);
-
-
+        txtUsername=findViewById(R.id.txt_user_name);
+        txtUniqueId=findViewById(R.id.txt_college_id);
         mPhoneNumberField =  findViewById(R.id.field_phone_number);
         mVerificationField = findViewById(R.id.field_verification_code);
         mStartButton =  findViewById(R.id.button_start_verification);
@@ -104,7 +107,24 @@ ProgressBar pp;
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
+                            Toast.makeText(PhoneAuthActivity.this, "signInWithCredential:success", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = task.getResult().getUser();
+                            // Write a message to the database
+                            if(mAuth!=null){
+                                 p=mAuth.getCurrentUser().getPhoneNumber();
+                            }
+
+                             database = FirebaseDatabase.getInstance();
+                             myRef = database.getReference(""+p).child("collegeID");
+                            Toast.makeText(PhoneAuthActivity.this, ""+txtUniqueId.getText(), Toast.LENGTH_SHORT).show();
+
+                            myRef.setValue(""+txtUniqueId.getText());
+
+                            myRef = database.getReference(""+p).child("username");
+                            Toast.makeText(PhoneAuthActivity.this, ""+txtUsername.getText(), Toast.LENGTH_SHORT).show();
+
+                            myRef.setValue(""+txtUsername.getText());
+
                             startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
                             finish();
                             Toast.makeText(PhoneAuthActivity.this, ""+user, Toast.LENGTH_SHORT).show();
@@ -161,6 +181,7 @@ ProgressBar pp;
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+            Toast.makeText(this, "U are a user", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
             finish();
         }

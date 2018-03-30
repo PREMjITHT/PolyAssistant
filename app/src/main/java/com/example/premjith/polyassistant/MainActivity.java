@@ -36,13 +36,35 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-       /* Button mSignOutButton =  findViewById(R.id.sign_out_button);
+        Button mSignOutButton =  findViewById(R.id.sign_out_button);
         TextView fireBaseId =  findViewById(R.id.detail);
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null){
             fireBaseId.setText(mAuth.getCurrentUser().getPhoneNumber());
         }
-        mSignOutButton.setOnClickListener(this);*/
+        mSignOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switch (v.getId()) {
+                    case R.id.sign_out_button:
+
+                        Toast.makeText(MainActivity.this, "Logging out...", Toast.LENGTH_SHORT).show();
+                        mAuth.signOut();
+                        startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
+                        finish();
+                        break;
+                }
+
+
+
+
+
+
+
+            }
+        });
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -108,6 +130,8 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -152,8 +176,8 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_Profile:
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
-             /*  Intent i1= new Intent(MainActivity.this,profilee.class);
-                startActivity(i1);*/
+               Intent i1= new Intent(getApplicationContext(),profilee.class);
+                startActivity(i1);
                 break;
             /*case R.id.nav_Branches:
                 Toast.makeText(this, "Branches", Toast.LENGTH_SHORT).show();
@@ -175,9 +199,9 @@ public class MainActivity extends AppCompatActivity
                break;*/
             case R.id.nav_About:
                 Toast.makeText(this, "Version 1.0 beta", Toast.LENGTH_SHORT).show();
-                //Intent i5= new Intent(MainActivity.this,About.class);
+                Intent i5= new Intent(getApplicationContext(),About.class);
 
-                //startActivity(i5);
+                startActivity(i5);
                 break;
             case R.id.nav_Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
@@ -186,19 +210,16 @@ public class MainActivity extends AppCompatActivity
                 // startActivity(i7);
                 break;
             case R.id.nav_Logout:
-                Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
-              /*  Intent i= new Intent(Navigation.this,SelectSemester.class);
-                i.putExtra("key",6);
-                startActivity(i);
-                */break;
-            // after this lets start copying the above.
-            // FOLLOW MEEEEE>>>
-            //copy this now.
+                Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
+                finish();
+                break;
         }
 
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

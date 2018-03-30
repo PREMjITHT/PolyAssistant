@@ -3,11 +3,13 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_100"
+    android:background="@drawable/gradient"
     android:gravity="center"
+
     android:orientation="vertical">
 
     <TextView
+        android:textColor="#fff"
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,43 +31,58 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
+            <EditText
+                android:id="@+id/txt_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="text"
+                android:textColorHint="#fff"/>
             <EditText
                 android:id="@+id/field_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_phone_number"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:textColorHint="#fff"/>
+            <EditText
+                android:id="@+id/txt_college_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="College ID"
+                android:inputType="phone"
+                android:textColorHint="#fff"/>
 
 
             <EditText
                 android:id="@+id/field_verification_code"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:hint="@string/hint_verification_code"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textColorHint="#fff"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3.0">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button_start_verification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                android:layout_weight="1"
                 android:text="@string/start_phone_auth"
+                android:background="@drawable/roundbutton"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             <Button
                 android:id="@+id/button_verify_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/roundbutton"
                 android:text="@string/verify_phone_auth"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
@@ -73,7 +90,8 @@
                 android:id="@+id/button_resend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.0"
+                android:layout_weight="1"
+                android:background="@drawable/roundbutton"
                 android:text="@string/resend_phone_auth"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
