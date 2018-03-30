@@ -5,44 +5,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     android:gravity="center"
-    android:layout_margin="60dp"
+
     tools:context="com.example.premjith.polyassistant.StudentDetails">
 
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_margin="60dp"
+           android:gravity="center"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
        <EditText
+           android:textColor="#fff"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:hint="REGISTER NO:"
            android:inputType="number"
-           android:textSize="30sp"
+           android:textSize="20sp"
+           android:fontFamily="monospace"
+           android:textColorHint="#ffff"
            android:id="@+id/txt_student_reg_num"
            />
        <LinearLayout
+           android:gravity="center"
+           android:layout_marginBottom="30dp"
            android:orientation="horizontal"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
 
        <EditText
-           android:layout_width="match_parent"
+           android:layout_width="0dp"
            android:layout_height="match_parent"
            android:id="@+id/in_date"
            android:textSize="30sp"
+           android:textColor="#fff"
+           android:textColorHint="#ffff"
            android:layout_weight="1"
            android:inputType="date"/>
               <Button
-
                   android:layout_width="wrap_content"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:text="SELECT DATE"
                   android:id="@+id/btn_date"
+                  android:textColor="#7cffcb"
+                  android:padding="15sp"
+                  android:background="@drawable/roundbutton"
                   />
+
        </LinearLayout>
 
       <Button
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:id="@+id/btn_stud_next"
-          android:text="next"/>
+          android:text="next"
+          android:textColor="#ffff"
+          android:background="@drawable/roundbutton"/>
 
-
+       </LinearLayout>
 </LinearLayout>

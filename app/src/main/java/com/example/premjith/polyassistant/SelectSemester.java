@@ -69,15 +69,15 @@ public class SelectSemester extends AppCompatActivity {
                         Intent i = new Intent(SelectSemester.this, StudentDetails.class);
                         i.putExtra("MY_SEM", semID);
                         i.putExtra("MY_BRANCH", branchID);
+
                         startActivity(i);
 
                     } else if (x == 2) {
+                        Intent i = new Intent(SelectSemester.this, StudentCGPA.class);
+                        i.putExtra("MY_SEM", semID);
+                        i.putExtra("MY_BRANCH", branchID);
+                        startActivity(i);
 
-                        //Intent i = new Intent(SelectSemester.this, Subjects.class);
-                        //i.putExtra("MY_SEM", semID);
-                        //i.putExtra("MY_BRANCH", branchID);
-                        //startActivity(i);
-                        Toast.makeText(SelectSemester.this, "superr admin option", Toast.LENGTH_SHORT).show();
 
                     }
 

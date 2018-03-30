@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:layout_margin="25dp"
+    android:layout_margin="40dp"
     tools:context="com.example.premjith.polyassistant.StudentSearch">
 
     <EditText

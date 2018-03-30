@@ -23,7 +23,7 @@ import java.security.cert.CertPathValidatorException;
 
 public class Subjects extends AppCompatActivity {
 
-    int supp=0;
+    int supp=0,CID=0;
     FirebaseAuth mAuth;
     float cgpa=0,cgpaSum=0,sum=0,aggr=0;
             int cgpaCount=1;
@@ -100,31 +100,7 @@ public class Subjects extends AppCompatActivity {
         SpinnerSlot10.setAdapter(adptr10);
 
 
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth!=null) {
-            pNumber = mAuth.getCurrentUser().getPhoneNumber();
 
-
-        }
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("" + pNumber).child("collegeID");
-
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    collegeID=Integer.parseInt(dataSnapshot.getValue().toString());
-                    Toast.makeText(Subjects.this, "coll id="+collegeID, Toast.LENGTH_SHORT).show();
-
-                }}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
 
@@ -141,6 +117,8 @@ public class Subjects extends AppCompatActivity {
         Toast.makeText(this, "subjects myreg="+reg, Toast.LENGTH_SHORT).show();
 
         BranchNumber = getIntent().getExtras().getInt("MY_BRANCH");
+        CID=getIntent().getExtras().getInt("MY_CID");
+        Toast.makeText(this, "CID subjects...................."+CID, Toast.LENGTH_SHORT).show();
 
         if (BranchNumber==1){
             if (SemNumber==1){
@@ -153,7 +131,7 @@ public class Subjects extends AppCompatActivity {
             else if (SemNumber==6){
                 nCount=7;
             }
-        }else if (BranchNumber==2){
+        }/*else if (BranchNumber==2){
             if (SemNumber==1){
                 nCount=6;
             }else if (SemNumber==2){
@@ -162,8 +140,8 @@ public class Subjects extends AppCompatActivity {
                 nCount=8;
             }
 
-        }
-
+        }*/
+        reStoreData(BranchNumber, SemNumber,nCount);
 
 
         setSubject(SemNumber, BranchNumber);
@@ -174,7 +152,7 @@ public class Subjects extends AppCompatActivity {
 
         }
 
-        reStoreData(BranchNumber, SemNumber,nCount);
+
             /* reStoreData(BranchNumber,SemNumber,SpinnerSlot2);
         reStoreData(BranchNumber,SemNumber,SpinnerSlot3);
         reStoreData(BranchNumber,SemNumber,SpinnerSlot4);
@@ -275,7 +253,7 @@ public class Subjects extends AppCompatActivity {
 
                 storeData(BranchNumber,SemNumber);
                 database=FirebaseDatabase.getInstance();
-                myRef=database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
+                myRef=database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
 
                 cgpaSum+=cgpa;
@@ -349,6 +327,10 @@ public class Subjects extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
     }
 
@@ -481,39 +463,27 @@ public class Subjects extends AppCompatActivity {
     }
 //simple method for storing the grades
     public void saveSlote(int b,int s,int n,int a){
-        myRef=database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+n);
+        myRef=database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+n);
                myRef.setValue(""+a);
     }
 
     public void reStoreData(int b, int s,int c) {
 
+
         if (c==6){
-
+            Toast.makeText(this, "collegeIdinner func="+CID, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "studentid="+reg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "branch="+BranchNumber, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "semester="+SemNumber, Toast.LENGTH_SHORT).show();
             database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" + SemNumber).child("slote").child(""+1);
-            //readData(spin);
-
-
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+1);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                 SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-            }}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+2);
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            if (dataSnapshot.exists()){
-                SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                    Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
             }}
 
             @Override
@@ -523,14 +493,16 @@ public class Subjects extends AppCompatActivity {
         });
 
 
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+3);
+
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+2);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
-                    SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                }}
+                        SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                    }}
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -538,14 +510,17 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+4);
+
+
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+3);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                }}
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                    }}
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -553,14 +528,18 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+5);
+
+
+
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+4);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                }}
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                    }}
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -568,14 +547,18 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+6);
+
+
+
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+5);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
-                    SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                }}
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                    }}
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -585,6 +568,22 @@ public class Subjects extends AppCompatActivity {
 
 
 
+
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+6);
+
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()){
+                        SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
+                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                    }}
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
 
 
 
@@ -592,7 +591,7 @@ public class Subjects extends AppCompatActivity {
         }else if (c==10){
 
             database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+1);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+1);
             //readData(spin);
 
 
@@ -609,7 +608,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+2);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+2);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -625,7 +624,7 @@ public class Subjects extends AppCompatActivity {
             });
 
 
-            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+3);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+3);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -640,7 +639,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+4);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -655,7 +654,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+5);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -670,7 +669,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+6);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -685,7 +684,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+7);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -699,7 +698,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+8);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+8);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -713,7 +712,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+9);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+9);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -727,7 +726,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+10);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+10);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -750,7 +749,7 @@ public class Subjects extends AppCompatActivity {
             }else if (c==8) {
 
             database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+1);
             //readData(spin);
 
 
@@ -767,7 +766,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+2);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -783,7 +782,7 @@ public class Subjects extends AppCompatActivity {
             });
 
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+3);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -797,8 +796,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+4);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -812,8 +810,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+5);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -828,7 +825,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+6);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -843,7 +840,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+7);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -857,7 +854,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+8);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+8);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -874,7 +871,7 @@ public class Subjects extends AppCompatActivity {
 
         }else if (c==7){
             database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+1);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+1);
             //readData(spin);
 
 
@@ -891,7 +888,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" +s).child("slote").child(""+2);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+2);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -907,7 +904,7 @@ public class Subjects extends AppCompatActivity {
             });
 
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+3);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+3);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -922,7 +919,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+4);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+4);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -936,8 +933,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+5);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+5);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -951,8 +947,7 @@ public class Subjects extends AppCompatActivity {
 
                 }
             });
-
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+6);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+6);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -967,7 +962,7 @@ public class Subjects extends AppCompatActivity {
                 }
             });
 
-            myRef = database.getReference("" + pNumber).child("branch").child("" + b).child("semester").child("" + s).child("slote").child(""+7);
+            myRef = database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("slote").child(""+7);
 
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override

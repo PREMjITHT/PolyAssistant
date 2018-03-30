@@ -29,9 +29,9 @@ public class StudentDetails extends AppCompatActivity implements
     FirebaseAuth mAuth;
     Button btnDatePicker,btnStudNext;
     EditText txtDate,txtRegNum;
-    int mYear, mMonth, mDay,b,s;
+    int mYear, mMonth, mDay,b,s,x;
     String pNumber,reg;
-    int collegeID;
+    int collegeID,CID;
 
 
     @Override
@@ -43,32 +43,66 @@ public class StudentDetails extends AppCompatActivity implements
         txtDate=findViewById(R.id.in_date);
         btnDatePicker.setOnClickListener(this);
         txtRegNum=findViewById(R.id.txt_student_reg_num);
-btnStudNext.setOnClickListener(new View.OnClickListener() {
+        mAuth=FirebaseAuth.getInstance();
+        if(mAuth!=null) {
+            pNumber = mAuth.getCurrentUser().getPhoneNumber();
+
+        }
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("" + pNumber).child("collegeID");
+        Toast.makeText(this, "phon test"+pNumber, Toast.LENGTH_SHORT).show();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Toast.makeText(StudentDetails.this, "00000000000000000000000000000000", Toast.LENGTH_SHORT).show();
+                    CID=Integer.parseInt(dataSnapshot.getValue().toString());
+                    Toast.makeText(StudentDetails.this, "CID="+CID, Toast.LENGTH_SHORT).show();
+                }}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+        b=getIntent().getExtras().getInt("MY_BRANCH");
+        s=getIntent().getExtras().getInt("MY_SEM");
+
+
+
+
+
+
+
+
+
+        btnStudNext.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
 
-        Intent in=new Intent(getApplicationContext(),Subjects.class);
-        in.putExtra("MY_SEM",s);
-        in.putExtra("MY_BRANCH",b);
-        in.putExtra("MY_REG",reg);
+
+        Intent in = new Intent(getApplicationContext(), Subjects.class);
+        in.putExtra("MY_SEM", s);
+        in.putExtra("MY_BRANCH", b);
+        in.putExtra("MY_REG", reg);
+       in.putExtra("MY_CID", CID);
+       startActivity(in);
+       Toast.makeText(StudentDetails.this, "cid moooooosaa=" + CID, Toast.LENGTH_SHORT).show();
 
 
-        startActivity(in);
-        Toast.makeText(StudentDetails.this, "registernum="+reg, Toast.LENGTH_SHORT).show();
-
-    }
-});
-
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth!=null) {
-            pNumber = mAuth.getCurrentUser().getPhoneNumber();
 
 
         }
 
-        b=getIntent().getExtras().getInt("MY_BRANCH");
-        s=getIntent().getExtras().getInt("MY_SEM");
+
+             });
+
+
+
 
 
         database = FirebaseDatabase.getInstance();

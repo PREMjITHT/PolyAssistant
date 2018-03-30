@@ -21,7 +21,12 @@ EditText tRGnum;
                 reg=tRGnum.getText().toString();
                 Toast.makeText(StudentSearch.this, "reg="+reg, Toast.LENGTH_SHORT).show();
                 Intent n=new Intent(getApplicationContext(),StudentCGPA.class);
+                n.putExtra("MY_REG",reg);
                 startActivity(n);
+
+
+
+
             }
         });
     }
