@@ -29,19 +29,34 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "PhoneAuthActivity";
     private FirebaseAuth mAuth;
+    int x;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.toolbar);
+        android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Button mSignOutButton =  findViewById(R.id.sign_out_button);
         TextView fireBaseId =  findViewById(R.id.detail);
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null){
-            fireBaseId.setText(mAuth.getCurrentUser().getPhoneNumber());
+//            fireBaseId.setText(mAuth.getCurrentUser().getPhoneNumber());
         }
+
+        x=getIntent().getExtras().getInt("k");
+        Toast.makeText(this, "main x="+x, Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+
+
+
+
+
         mSignOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 
                         Toast.makeText(MainActivity.this, "Logging out...", Toast.LENGTH_SHORT).show();
                         mAuth.signOut();
-                        startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
+                        startActivity(new Intent(MainActivity.this, UserSelectionActivity.class));
                         finish();
                         break;
                 }
@@ -78,7 +93,6 @@ public class MainActivity extends AppCompatActivity
         Button buttonCT=findViewById(R.id.btn_branch_Computer);
         Button buttonMECH=findViewById(R.id.btn_branch_mech);
         Button buttonCIVIL=findViewById(R.id.btn_branch_Civil);
-        Button buttonELECTRICAL=findViewById(R.id.btn_branch_electrical);
         Button buttonELECTRONICS=findViewById(R.id.btn_branch_electronics);
         buttonCT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +100,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Computer", Toast.LENGTH_SHORT).show();
                 Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
                 Inte.putExtra("key",1);
+                Inte.putExtra("ad",+x);
                 startActivity(Inte);
 
             }
@@ -99,6 +114,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(MainActivity.this, "Civil", Toast.LENGTH_SHORT).show();
                 Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
                 Inte.putExtra("key",2);
+                Inte.putExtra("ad",+x);
                 startActivity(Inte);
 
 
@@ -109,10 +125,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "Mechanical", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",3);
-                startActivity(Inte);
+                Toast.makeText(MainActivity.this, "Comming soon...!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -120,10 +133,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(MainActivity.this, "Electronics", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
-                Inte.putExtra("key",5);
-                startActivity(Inte);
+                Toast.makeText(MainActivity.this, "Comming Soon...!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -178,41 +188,23 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                Intent i1= new Intent(getApplicationContext(),profilee.class);
                 startActivity(i1);
+                finish();
                 break;
-            /*case R.id.nav_Branches:
-                Toast.makeText(this, "Branches", Toast.LENGTH_SHORT).show();
-                Intent i2= new Intent(MainActivity.this,MainActivity.class);
-                i2.putExtra("key",2);
-                startActivity(i2);
-                break;
-            case R.id.nav_Semester:
-                Toast.makeText(this, "Semester", Toast.LENGTH_SHORT).show();
-                Intent i3= new Intent(Navigation.this,SelectSemester.class);
-                i3.putExtra("key",3);
-                startActivity(i3);
-                break;
-            case R.id.nav_Result:
-                Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
-                Intent i4= new Intent(Navigation.this,Result.class);
-                i4.putExtra("key",4);
-                startActivity(i4);
-               break;*/
+
             case R.id.nav_About:
                 Toast.makeText(this, "Version 1.0 beta", Toast.LENGTH_SHORT).show();
                 Intent i5= new Intent(getApplicationContext(),About.class);
-
                 startActivity(i5);
+                finish();
                 break;
             case R.id.nav_Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                //Intent i7= new Intent(MainActivity.this,.class);
-                // i7.putExtra("key",7);
-                // startActivity(i7);
+
                 break;
             case R.id.nav_Logout:
                 Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
-                startActivity(new Intent(MainActivity.this, PhoneAuthActivity.class));
+                startActivity(new Intent(MainActivity.this, UserSelectionActivity.class));
                 finish();
                 break;
         }

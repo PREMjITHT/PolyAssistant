@@ -6,10 +6,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:layout_margin="60dp"
     tools:context="com.example.premjith.polyassistant.StudentDetails">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="next"/>
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="REGISTER NO:"
+           android:inputType="number"
+           android:textSize="30sp"
+           android:id="@+id/txt_student_reg_num"
+           />
+       <LinearLayout
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/in_date"
+           android:textSize="30sp"
+           android:layout_weight="1"
+           android:inputType="date"/>
+              <Button
+
+                  android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:text="SELECT DATE"
+                  android:id="@+id/btn_date"
+                  />
+       </LinearLayout>
+
+      <Button
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/btn_stud_next"
+          android:text="next"/>
+
+
 </LinearLayout>

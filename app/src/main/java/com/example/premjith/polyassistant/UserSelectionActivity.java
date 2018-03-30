@@ -17,11 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserSelectionActivity extends AppCompatActivity {
 Button btnAdmin,btnGuest,btnSuperAdmin;
-
+    FirebaseDatabase database;
+    DatabaseReference myRef;
+    FirebaseAuth mAuth;
      Toolbar mToolbar;
+     String p;
      LinearLayout linearLayout;
 
     @Override
@@ -73,6 +81,32 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
             }
         }
 
+        if(mAuth!=null) {
+            p = mAuth.getCurrentUser().getPhoneNumber();
+            Toast.makeText(this, "Phone number:"+p, Toast.LENGTH_SHORT).show();
+
+        }
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(""+p).child("user");
+
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    Toast.makeText(UserSelectionActivity.this, "Entered", Toast.LENGTH_SHORT).show();
+                  String temp=dataSnapshot.getValue().toString();
+                    Toast.makeText(UserSelectionActivity.this, "temp="+temp, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +120,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getApplicationContext(),StudentSearch.class);
+                Intent i=new Intent(getApplicationContext(),StudentDetails.class);
                 startActivity(i);
             }
         });
@@ -95,9 +129,10 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent ii = new Intent(getApplicationContext(), PhoneAuthActivity.class);
-                startActivity(ii);
+String u="admin";
+                Intent i = new Intent(getApplicationContext(), PhoneAuthActivity.class);
+                i.putExtra("ad",1);
+                startActivity(i);
 
 
             }
@@ -105,8 +140,10 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         findViewById(R.id.btn_user_super_admin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ii = new Intent(getApplicationContext(),PhoneAuthActivity.class);
-                startActivity(ii);
+                String u="superadmin";
+                Intent i = new Intent(getApplicationContext(),PhoneAuthActivity.class);
+                i.putExtra("ad",2);
+                startActivity(i);
             }
         });
 

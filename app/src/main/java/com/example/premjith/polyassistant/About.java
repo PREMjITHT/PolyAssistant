@@ -14,12 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class About extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+FirebaseAuth mAuth;
     DrawerLayout drawer;
     NavigationView navigationView;
-    Toolbar toolbar=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,22 +29,22 @@ public class About extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -94,7 +95,10 @@ public class About extends AppCompatActivity
             case R.id.nav_Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();break;
             case R.id.nav_Logout:
-                Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();break;
+                Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                startActivity(new Intent(this, UserSelectionActivity.class));
+                finish();break;
 
         }
 

@@ -14,10 +14,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class profilee extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
+    private FirebaseAuth mAuth;
     NavigationView navigationView;
     Toolbar toolbar=null;
 
@@ -89,48 +92,24 @@ public class profilee extends AppCompatActivity
             case R.id.nav_Profile:
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                 Intent i1= new Intent(profilee.this,profilee.class);
-                i1.putExtra("key",1);
+                finish();
                 startActivity(i1);
                 break;
-           /* case R.id.nav_Branches:
-                Toast.makeText(this, "Branches", Toast.LENGTH_SHORT).show();
-                Intent i2= new Intent(profilee.this,MainActivity.class);
-                i2.putExtra("key",2);
-                startActivity(i2);
-                break;
-            case R.id.nav_Semester:
-                Toast.makeText(this, "Semester", Toast.LENGTH_SHORT).show();
-               /* Intent i3= new Intent(Navigation.this,SelectSemester.class);
-                i3.putExtra("key",3);
-                startActivity(i3);
-               */// break;
-           // case R.id.nav_Result:
-           //     Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
-              /*  Intent i4= new Intent(Navigation.this,Result.class);
-                i4.putExtra("key",4);
-                startActivity(i4);
-                *///break;
+
             case R.id.nav_About:
                 Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
                 Intent i5= new Intent(profilee.this,About.class);
-                i5.putExtra("key",5);
+                finish();
                 startActivity(i5);
                 break;
             case R.id.nav_Settings:
-                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
-                //Intent i7= new Intent(MainActivity.this,.class);
-                // i7.putExtra("key",7);
-                // startActivity(i7);
-                break;
+                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();break;
             case R.id.nav_Logout:
                 Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
-              /*  Intent i= new Intent(Navigation.this,SelectSemester.class);
-                i.putExtra("key",6);
-                startActivity(i);
-                */break;
-            // after this lets start copying the above.
-            // FOLLOW MEEEEE>>>
-            //copy this now.
+                mAuth.signOut();
+                startActivity(new Intent(this, UserSelectionActivity.class));
+                finish();
+                break;
         }
 
 

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by Lincoln on 05/05/16.
+ * Created by PREMjITH on 05/03/18.
  */
 
 public class PrefManager {

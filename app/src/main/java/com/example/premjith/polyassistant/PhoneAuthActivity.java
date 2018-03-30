@@ -45,7 +45,7 @@ ProgressBar pp;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     String mVerificationId,p;
-
+int usNum=0,x;
     private static final String TAG = "PhoneAuthActivity";
 
     @Override
@@ -89,11 +89,17 @@ ProgressBar pp;
             public void onCodeSent(String verificationId,
                                    PhoneAuthProvider.ForceResendingToken token) {
                 Log.d(TAG, "onCodeSent:" + verificationId);
+                Toast.makeText(PhoneAuthActivity.this, "OTP sented...", Toast.LENGTH_SHORT).show();
                 mVerificationId = verificationId;
                 mResendToken = token;
 
             }
         };
+
+
+
+        x=getIntent().getExtras().getInt("ad");
+        Toast.makeText(this, "oncre auth x="+x, Toast.LENGTH_SHORT).show();
 
 
 
@@ -113,19 +119,42 @@ ProgressBar pp;
                             if(mAuth!=null){
                                  p=mAuth.getCurrentUser().getPhoneNumber();
                             }
+                            database = FirebaseDatabase.getInstance();
 
-                             database = FirebaseDatabase.getInstance();
+                            if (x==1) {
+
+
+                                Toast.makeText(PhoneAuthActivity.this, "User=" + x, Toast.LENGTH_SHORT).show();
+                                myRef = database.getReference(""+p).child("user");
+                                myRef.setValue(""+x);
+                                usNum=1;
+
+
+                            }else {
+
+                                myRef = database.getReference(""+p).child("user");
+                                myRef.setValue(""+x);
+                                usNum=2;
+                            }
+
                              myRef = database.getReference(""+p).child("collegeID");
                             Toast.makeText(PhoneAuthActivity.this, ""+txtUniqueId.getText(), Toast.LENGTH_SHORT).show();
 
                             myRef.setValue(""+txtUniqueId.getText());
 
+
+
                             myRef = database.getReference(""+p).child("username");
                             Toast.makeText(PhoneAuthActivity.this, ""+txtUsername.getText(), Toast.LENGTH_SHORT).show();
 
                             myRef.setValue(""+txtUsername.getText());
-
-                            startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
+                            x=getIntent().getExtras().getInt("ad");
+                            Toast.makeText(PhoneAuthActivity.this, "phon auth x="+x, Toast.LENGTH_SHORT).show();
+                            //startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
+                            Intent in=new Intent(getApplicationContext(),MainActivity.class);
+                            in.putExtra("k",x);
+                            Toast.makeText(PhoneAuthActivity.this, "usnum="+usNum, Toast.LENGTH_SHORT).show();
+                            startActivity(in);
                             finish();
                             Toast.makeText(PhoneAuthActivity.this, ""+user, Toast.LENGTH_SHORT).show();
 
@@ -181,8 +210,13 @@ ProgressBar pp;
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+            x=getIntent().getExtras().getInt("ad");
             Toast.makeText(this, "U are a user", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
+            Toast.makeText(this, "x="+x, Toast.LENGTH_SHORT).show();
+            Intent in=new Intent(this,MainActivity.class);
+            in.putExtra("k",x);
+            startActivity(in);
+            //startActivity(new Intent(PhoneAuthActivity.this,StudentSearch.class));
             finish();
         }
     }
