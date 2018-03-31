@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Computer", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
+                Intent Inte=new Intent(MainActivity.this,Alert.class);
                 Inte.putExtra("key",1);
                 Inte.putExtra("ad",+x);
                 startActivity(Inte);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
 
 
                 Toast.makeText(MainActivity.this, "Civil", Toast.LENGTH_SHORT).show();
-                Intent Inte=new Intent(MainActivity.this,SelectSemester.class);
+                Intent Inte=new Intent(MainActivity.this,Alert.class);
                 Inte.putExtra("key",2);
                 Inte.putExtra("ad",+x);
                 startActivity(Inte);

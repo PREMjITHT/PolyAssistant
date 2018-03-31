@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SelectSemester extends AppCompatActivity {
 
     int semID=1,branchID=1;
+    String classRoom;
     FirebaseAuth mAuth;
     String p,user;
     FirebaseDatabase database;
@@ -37,7 +38,8 @@ public class SelectSemester extends AppCompatActivity {
           tvSemNumber = findViewById(R.id.tv_sem_number);
           branchID= getIntent().getExtras().getInt("key");
           x=getIntent().getExtras().getInt("ad");
-        Toast.makeText(this, "semester X="+x, Toast.LENGTH_SHORT).show();
+          classRoom=getIntent().getExtras().getString("MY_CLASS");
+        Toast.makeText(this, "class="+classRoom, Toast.LENGTH_SHORT).show();
 
          numberPicker = findViewById(R.id.np);
        // tv.setTextColor(Color.parseColor("#fff"));
@@ -69,6 +71,7 @@ public class SelectSemester extends AppCompatActivity {
                         Intent i = new Intent(SelectSemester.this, StudentDetails.class);
                         i.putExtra("MY_SEM", semID);
                         i.putExtra("MY_BRANCH", branchID);
+                        i.putExtra("MY_CLASS",classRoom);
 
                         startActivity(i);
 
@@ -77,6 +80,7 @@ public class SelectSemester extends AppCompatActivity {
                         i.putExtra("MY_SEM", semID);
                         i.putExtra("MY_BRANCH", branchID);
                         startActivity(i);
+                        i.putExtra("MY_CLASS",classRoom);
 
 
                     }

@@ -30,7 +30,7 @@ public class StudentDetails extends AppCompatActivity implements
     Button btnDatePicker,btnStudNext;
     EditText txtDate,txtRegNum;
     int mYear, mMonth, mDay,b,s,x;
-    String pNumber,reg;
+    String pNumber,reg,classRoom;
     int collegeID,CID;
 
 
@@ -55,7 +55,6 @@ public class StudentDetails extends AppCompatActivity implements
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    Toast.makeText(StudentDetails.this, "00000000000000000000000000000000", Toast.LENGTH_SHORT).show();
                     CID=Integer.parseInt(dataSnapshot.getValue().toString());
                     Toast.makeText(StudentDetails.this, "CID="+CID, Toast.LENGTH_SHORT).show();
                 }}
@@ -67,7 +66,7 @@ public class StudentDetails extends AppCompatActivity implements
         });
 
 
-
+        classRoom=getIntent().getExtras().getString("MY_CLASS");
         b=getIntent().getExtras().getInt("MY_BRANCH");
         s=getIntent().getExtras().getInt("MY_SEM");
 
@@ -87,6 +86,7 @@ public class StudentDetails extends AppCompatActivity implements
 
         Intent in = new Intent(getApplicationContext(), Subjects.class);
         in.putExtra("MY_SEM", s);
+        in.putExtra("MY_CLASS",classRoom);
         in.putExtra("MY_BRANCH", b);
         in.putExtra("MY_REG", reg);
        in.putExtra("MY_CID", CID);
@@ -154,7 +154,7 @@ public class StudentDetails extends AppCompatActivity implements
                             txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                             reg=txtRegNum.getText().toString();
                             database = FirebaseDatabase.getInstance();
-                            myRef = database.getReference("collegeID").child(""+collegeID).child("student").child(""+reg).child("DOB");
+                            myRef = database.getReference("collegeID").child(""+collegeID).child(""+classRoom).child("student").child(""+reg).child("DOB");
                             myRef.setValue(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
 

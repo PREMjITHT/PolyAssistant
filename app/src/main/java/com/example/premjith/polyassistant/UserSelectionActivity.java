@@ -120,7 +120,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(getApplicationContext(),Alert.class);//StudentSearch.class);
+                Intent in=new Intent(getApplicationContext(),StudentSearch.class);
                 startActivity(in);
                 Toast.makeText(UserSelectionActivity.this, "guest user..........", Toast.LENGTH_SHORT).show();
             }
