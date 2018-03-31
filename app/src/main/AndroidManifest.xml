@@ -27,7 +27,9 @@
         <activity android:name=".About" />
         <activity android:name=".StudentSearch" />
         <activity android:name=".StudentDetails" />
-        <activity android:name=".StudentCGPA"></activity>
+        <activity android:name=".StudentCGPA" />
+        <activity android:name=".CreateClass"/>
+        <activity android:name=".Alert"/>
     </application>
 
 </manifest>

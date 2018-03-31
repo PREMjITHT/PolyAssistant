@@ -255,6 +255,8 @@ public class Subjects extends AppCompatActivity {
                 database=FirebaseDatabase.getInstance();
                 myRef=database.getReference("collegeID").child(""+CID).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
+                myRef=database.getReference("tekerala").child(""+reg).child("cgpa");
+                myRef.setValue(""+cgpa);
 
                 cgpaSum+=cgpa;
                 if (cgpaCount!=0) {
@@ -313,12 +315,6 @@ public class Subjects extends AppCompatActivity {
                 }
 
                 cgpaCount++;
-
-
-
-
-
-
 
                 //dump code
                 //finish();
