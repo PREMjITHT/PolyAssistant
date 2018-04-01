@@ -68,7 +68,7 @@ public class StudentDetails extends AppCompatActivity implements
 
         classRoom=getIntent().getExtras().getString("MY_CLASS");
         b=getIntent().getExtras().getInt("MY_BRANCH");
-        s=getIntent().getExtras().getInt("MY_SEM");
+
 
 
 
@@ -82,10 +82,14 @@ public class StudentDetails extends AppCompatActivity implements
     @Override
     public void onClick(View v) {
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("register").child(""+classRoom).push();
+        myRef.setValue(""+txtRegNum.getText());
 
 
-        Intent in = new Intent(getApplicationContext(), Subjects.class);
-        in.putExtra("MY_SEM", s);
+
+        Intent in = new Intent(getApplicationContext(),SelectSemester.class);
+
         in.putExtra("MY_CLASS",classRoom);
         in.putExtra("MY_BRANCH", b);
         in.putExtra("MY_REG", reg);

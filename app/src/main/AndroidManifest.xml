@@ -28,8 +28,8 @@
         <activity android:name=".StudentSearch" />
         <activity android:name=".StudentDetails" />
         <activity android:name=".StudentCGPA" />
-        <activity android:name=".CreateClass"/>
-        <activity android:name=".Alert"/>
+        <activity android:name=".Alert" />
+        <activity android:name=".RegisterNumber"></activity>
     </application>
 
 </manifest>

@@ -92,10 +92,22 @@ public class Alert extends Activity {
 				String text = lv.getItemAtPosition(position).toString().trim();
 				Toast.makeText(context, ""+text, Toast.LENGTH_SHORT).show();
 				Intent in=new Intent(context,SelectSemester.class);
-				in.putExtra("MY_CLASS",text);
-				in.putExtra("key",branchID);
-				in.putExtra("ad",+x);
-				startActivity(in);
+				if (x==1){
+					Intent i = new Intent(context, StudentDetails.class);
+					i.putExtra("MY_BRANCH", branchID);
+					i.putExtra("MY_CLASS",text);
+
+					startActivity(i);
+
+				} else if (x == 2) {
+					Intent i = new Intent(context,RegisterNumber.class);
+					i.putExtra("MY_CLASS",text);
+					i.putExtra("MY_BRANCH", branchID);
+					startActivity(i);
+
+
+
+				}
 			}
 		});
 

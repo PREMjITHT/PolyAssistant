@@ -20,10 +20,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SelectSemester extends AppCompatActivity {
 
-    int semID=1,branchID=1;
+    int semID=1,branchID=1,CID;
     String classRoom;
     FirebaseAuth mAuth;
-    String p,user;
+    String reg;
     FirebaseDatabase database;
     DatabaseReference myRef;
     NumberPicker numberPicker;
@@ -36,10 +36,13 @@ public class SelectSemester extends AppCompatActivity {
         setContentView(R.layout.activity_select_sem);
           tvSem = findViewById(R.id.tv_semester);
           tvSemNumber = findViewById(R.id.tv_sem_number);
-          branchID= getIntent().getExtras().getInt("key");
-          x=getIntent().getExtras().getInt("ad");
-          classRoom=getIntent().getExtras().getString("MY_CLASS");
-        Toast.makeText(this, "class="+classRoom, Toast.LENGTH_SHORT).show();
+
+            CID=getIntent().getExtras().getInt("MY_CID");
+            reg=getIntent().getExtras().getString("MY_REG");
+            branchID=getIntent().getExtras().getInt("MY_BRANCH");
+            classRoom=getIntent().getExtras().getString("MY_CLASS");
+        Toast.makeText(this, "cid="+CID+"reg="+reg+"branch="+branchID+"class="+classRoom, Toast.LENGTH_SHORT).show();
+
 
          numberPicker = findViewById(R.id.np);
        // tv.setTextColor(Color.parseColor("#fff"));
@@ -66,27 +69,13 @@ public class SelectSemester extends AppCompatActivity {
                 public void onClick(View v) {
                     //Toast.makeText(SelectSemester.this, "sem="+semID, Toast.LENGTH_SHORT).show();
 
-
-                    if (x==1){
-                        Intent i = new Intent(SelectSemester.this, StudentDetails.class);
-                        i.putExtra("MY_SEM", semID);
-                        i.putExtra("MY_BRANCH", branchID);
-                        i.putExtra("MY_CLASS",classRoom);
-
-                        startActivity(i);
-
-                    } else if (x == 2) {
-                        Intent i = new Intent(SelectSemester.this, StudentCGPA.class);
-                        i.putExtra("MY_SEM", semID);
-                        i.putExtra("MY_BRANCH", branchID);
-                        startActivity(i);
-                        i.putExtra("MY_CLASS",classRoom);
-
-
-                    }
-
-
-
+            Intent in=new Intent(getApplicationContext(),Subjects.class);
+            in.putExtra("MY_CID",CID);
+            in.putExtra("MY_REG",reg);
+            in.putExtra("MY_CLASS",classRoom);
+            in.putExtra("MY_SEM",semID);
+            in.putExtra("MY_BRANCH",branchID);
+            startActivity(in);
 
 
                 }

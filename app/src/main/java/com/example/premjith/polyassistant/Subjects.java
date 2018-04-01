@@ -255,7 +255,7 @@ public class Subjects extends AppCompatActivity {
                 database=FirebaseDatabase.getInstance();
                 myRef=database.getReference("collegeID").child(""+CID).child(""+classRoom).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
-                myRef=database.getReference("tekerala").child(""+reg).child("cgpa");
+                myRef=database.getReference("tekerala").child(""+reg).child("cgpa").push();
                 myRef.setValue(""+cgpa);
 
                 cgpaSum+=cgpa;
