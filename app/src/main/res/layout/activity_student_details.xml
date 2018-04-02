@@ -62,7 +62,7 @@
           android:id="@+id/btn_stud_next"
           android:text="next"
           android:textColor="#ffff"
-          android:background="@drawable/roundbutton"/>
+          android:background="@drawable/bg_button"/>
 
        </LinearLayout>
 </LinearLayout>

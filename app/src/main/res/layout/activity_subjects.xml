@@ -394,7 +394,7 @@
     android:text="Result"
     android:fontFamily="monospace"
     android:textColor="#fff"
-    android:background="@drawable/roundbutton"
+    android:background="@drawable/bg_button_green"
     android:layout_weight="1"/>
 
 
@@ -405,7 +405,7 @@
         android:text="Next Sem"
         android:fontFamily="monospace"
         android:textColor="#fff"
-        android:background="@drawable/roundbutton"
+        android:background="@drawable/bg_button"
         android:layout_weight="1"/>
 </LinearLayout>
 </LinearLayout>

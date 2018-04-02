@@ -71,13 +71,6 @@ public class StudentDetails extends AppCompatActivity implements
 
 
 
-
-
-
-
-
-
-
         btnStudNext.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {

@@ -101,15 +101,6 @@ public class Subjects extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
         //Getting semester id from select semester activity
         SemNumber = getIntent().getExtras().getInt("MY_SEM");
         classRoom=getIntent().getExtras().getString("MY_CLASS");
@@ -249,13 +240,15 @@ public class Subjects extends AppCompatActivity {
 
                 }
 
-
+                String s = String.format("%.2f", cgpa);
                 storeData(BranchNumber,SemNumber);
                 database=FirebaseDatabase.getInstance();
                 myRef=database.getReference("collegeID").child(""+CID).child(""+classRoom).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
+                Toast.makeText(Subjects.this, "newwwwwwwwww"+reg, Toast.LENGTH_SHORT).show();
                 myRef=database.getReference("tekerala").child(""+reg).child("cgpa").child(""+SemNumber);
-                myRef.setValue(""+cgpa);
+
+                myRef.setValue(""+s);
 
                 cgpaSum+=cgpa;
                 if (cgpaCount!=0) {
@@ -280,6 +273,7 @@ public class Subjects extends AppCompatActivity {
         btnNextsem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
 
 
@@ -368,7 +362,7 @@ public class Subjects extends AppCompatActivity {
 
 
         database=FirebaseDatabase.getInstance();
-        myRef=database.getReference("collegeID").child(""+CID).child(""+classRoom).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("supply");
+        myRef=database.getReference("tekerala").child(""+reg).child("supply").child(""+SemNumber);
         myRef.setValue(""+supp);
 
         database=FirebaseDatabase.getInstance();

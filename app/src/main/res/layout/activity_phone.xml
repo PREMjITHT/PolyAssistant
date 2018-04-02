@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/start_phone_auth"
-                android:background="@drawable/roundbutton"
+                android:background="@drawable/bg_button"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
             <Button
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/roundbutton"
+                android:background="@drawable/bg_button"
                 android:text="@string/resend_phone_auth"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 

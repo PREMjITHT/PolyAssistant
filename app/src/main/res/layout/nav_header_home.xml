@@ -26,6 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textSize="22sp"
+        android:fontFamily="monospace"
+        android:textColor="#fff"
+        android:textStyle="bold"
         android:text="Poly Assistant"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
@@ -33,6 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textSize="18sp"
+        android:textColor="#fff"
         android:text="Phone Number"
         android:id="@+id/tvPhoneNav"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

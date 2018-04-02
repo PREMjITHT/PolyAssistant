@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+android:background="@drawable/gradient"
     android:gravity="center"
     tools:context="com.example.premjith.polyassistant.Result">
 
@@ -87,13 +87,13 @@
         android:textAlignment="center"
         />
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150sp"
 
         android:layout_height="wrap_content"
         android:text="Done"
         android:id="@+id/btn_next"
         android:textColor="#fff"
-        android:background="@drawable/roundbutton"/>
+        android:background="@drawable/bg_button"/>
 
 
 </LinearLayout>

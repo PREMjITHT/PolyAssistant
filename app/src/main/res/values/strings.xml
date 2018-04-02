@@ -5,16 +5,16 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Forgot your grades..?</string>
-    <string name="slide_1_desc">I will remember for you</string>
+    <string name="slide_1_title">Offline sync!</string>
+    <string name="slide_1_desc">Best data access</string>
 
     <string name="slide_2_title">Lightning speed ..!</string>
     <string name="slide_2_desc">Fastest cloud support </string>
 
-    <string name="slide_3_title">Secured with google API</string>
-    <string name="slide_3_desc">Always watch you and help you</string>
+    <string name="slide_3_title">Secured</string>
+    <string name="slide_3_desc">Google security support</string>
 
-    <string name="slide_4_title">Simple and best UI..!</string>
+    <string name="slide_4_title">Multi User Support</string>
     <string name="slide_4_desc">Best User Interface</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>

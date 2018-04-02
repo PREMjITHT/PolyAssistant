@@ -7,10 +7,16 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_weight="1"
-    android:layout_margin="25dp"
+    android:background="@drawable/gradient"
     tools:context="com.example.premjith.polyassistant.StudentCGPA">
     <LinearLayout
-        android:background="#eee0ef"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="25dp">
+    <LinearLayout
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -19,8 +25,9 @@
     android:layout_width="100dp"
     android:layout_height="100dp"
     android:id="@+id/imvprofile"
-    android:src="@mipmap/ic_launcher"/>
+    android:src="@drawable/profile3"/>
         <LinearLayout
+            android:background="@color/colorAccent"
             android:gravity="center"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -31,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
+        android:textColor="#fff"
         android:id="@+id/tv_stud_name"
         android:gravity="center"
         android:textSize="36sp"
@@ -41,6 +49,7 @@
         android:layout_height="wrap_content"
         android:text="Register Number"
         android:gravity="center"
+        android:textColor="#fff"
         android:textSize="25sp"
         android:id="@+id/tv_stud_reg"
         />
@@ -57,6 +66,7 @@
             android:textSize="20sp"
             android:fontFamily="monospace"
             android:gravity="center"
+            android:textColor="#f09cff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SEMESTERS"/>
@@ -78,12 +88,14 @@
             android:text="0"
             android:background="@drawable/roundbutton"
             android:layout_width="50dp"
+            android:textColor="#fff"
             android:id="@+id/btn_display_sem1"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"/>
+            android:text="1"
+            android:textColor="#f3baff"/>
         </LinearLayout>
         <LinearLayout
             android:gravity="center"
@@ -96,8 +108,10 @@
                 android:id="@+id/btn_display_sem2"
                 android:background="@drawable/roundbutton"
                 android:layout_width="50dp"
+                android:textColor="#fff"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textColor="#f3baff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"/>
@@ -113,8 +127,10 @@
                 android:id="@+id/btn_display_sem3"
                 android:background="@drawable/roundbutton"
                 android:layout_width="50dp"
+                android:textColor="#fff"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textColor="#f3baff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"/>
@@ -129,8 +145,10 @@
             android:text="0"
             android:background="@drawable/roundbutton"
             android:layout_width="50dp"
+            android:textColor="#fff"
             android:layout_height="wrap_content" />
         <TextView
+            android:textColor="#f3baff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"/>
@@ -145,10 +163,12 @@
             android:id="@+id/btn_display_sem5"
             android:background="@drawable/roundbutton"
             android:layout_width="50dp"
+            android:textColor="#fff"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#f3baff"
             android:text="5"/>
     </LinearLayout>
         <LinearLayout
@@ -162,8 +182,10 @@
                 android:id="@+id/btn_display_sem6"
                 android:background="@drawable/roundbutton"
                 android:layout_width="50dp"
+                android:textColor="#fff"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textColor="#f3baff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6"/>
@@ -181,21 +203,24 @@
             android:layout_height="120sp"
             android:textSize="28sp"
             android:id="@+id/btn_agg_big"
-            android:backgroundTint="#fff"
-            android:text="Aggragate"
+            android:textColor="#fff"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
             android:background="@drawable/circle"/>
         <TextView
+            android:textColor="#f09cff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aggragate"/>
         <Button
+            android:textColor="#ffbaf6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:backgroundTint="#fff"
-            android:text="Supply"
+            android:textSize="20sp"
+            android:id="@+id/btn_supply_cgpa"
             android:background="@drawable/circle"/>
         <TextView
+            android:textColor="#f09cff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Supply"/>
@@ -210,6 +235,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Approve"
+        android:textColor="#ffbaf6"
+        android:background="@drawable/bg_button_green"
         android:id="@+id/btn_approve"
         />
 
@@ -219,7 +246,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Incorrect"
+        android:textColor="#ffbaf6"
+        android:background="@drawable/bg_button"
         android:id="@+id/btn_invalid"
         />
     </LinearLayout>
+</LinearLayout>
 </LinearLayout>

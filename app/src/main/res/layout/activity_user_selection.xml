@@ -51,21 +51,21 @@
             android:id="@+id/btn_user_admin"
             android:text="admin"
             android:textColor="#fff"
-            android:background="@drawable/roundbutton"/>
+            android:background="@drawable/bg_button"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_user_super_admin"
             android:text="super admin"
             android:textColor="#fff"
-            android:background="@drawable/roundbutton"/>
+            android:background="@drawable/bg_button"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_user_guest"
             android:text="guest user"
             android:textColor="#fff"
-            android:background="@drawable/roundbutton"/>
+            android:background="@drawable/bg_button"/>
 
     </LinearLayout>
     <LinearLayout

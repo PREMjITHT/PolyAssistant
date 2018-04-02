@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StudentCGPA extends AppCompatActivity {
 String r,name;
-Button s1,s2,s3,s4,s5,s6,aBig,btnAppr,btnIncor;
+Button s1,s2,s3,s4,s5,s6,aBig,btnAppr,btnIncor,btnSupply;
 FirebaseDatabase database;
 DatabaseReference myRef;
 TextView tvName,tvReg;
@@ -34,6 +34,7 @@ TextView tvName,tvReg;
         s5=findViewById(R.id.btn_display_sem5);
         s6=findViewById(R.id.btn_display_sem6);
         tvReg=findViewById(R.id.tv_stud_reg);
+        btnSupply=findViewById(R.id.btn_supply_cgpa);
         r=getIntent().getExtras().getString("MY_REG");
         int q=getIntent().getExtras().getInt("MY_KEY");
         tvReg.setText(r);
@@ -83,13 +84,28 @@ TextView tvName,tvReg;
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     int count=0;
-                    float sum=0,c=0;
-                    float a1=Float.parseFloat(dataSnapshot.child("1").getValue().toString());
-                    float a2=Float.parseFloat(dataSnapshot.child("2").getValue().toString());
-                    float a3=Float.parseFloat(dataSnapshot.child("3").getValue().toString());
-                    float a4=Float.parseFloat(dataSnapshot.child("4").getValue().toString());
-                    float a5=Float.parseFloat(dataSnapshot.child("5").getValue().toString());
-                    float a6=Float.parseFloat(dataSnapshot.child("6").getValue().toString());
+                    float sum=0,c=0,a1=0,a2=0,a3=0,a4=0,a5=0,a6=0;
+                    if (dataSnapshot.child("1").exists()){
+                         a1=Float.parseFloat(dataSnapshot.child("1").getValue().toString());
+                    }
+                    if (dataSnapshot.child("2").exists()){
+                         a2=Float.parseFloat(dataSnapshot.child("2").getValue().toString());
+                    }
+                    if (dataSnapshot.child("3").exists()){
+                         a3=Float.parseFloat(dataSnapshot.child("3").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("4").exists()){
+                         a4=Float.parseFloat(dataSnapshot.child("4").getValue().toString());
+                    }
+                    if (dataSnapshot.child("5").exists()){
+                         a5=Float.parseFloat(dataSnapshot.child("5").getValue().toString());
+                    }
+                    if (dataSnapshot.child("6").exists()){
+                         a6=Float.parseFloat(dataSnapshot.child("6").getValue().toString());
+                    }
+
+
 
                     if (a1!=0){
                         count+=1;
@@ -136,7 +152,48 @@ TextView tvName,tvReg;
 
 
 
-            btnAppr.setOnClickListener(new View.OnClickListener() {
+        database=FirebaseDatabase.getInstance();
+
+        myRef = database.getReference("tekerala").child("" +r).child("supply");//.child("" +i);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int count=0;
+                int sumSup=0,c=0,s1=0,s2=0,s3=0,s4=0,s5=0,s6=0;
+                if (dataSnapshot.child("1").exists()){
+                    s1=Integer.parseInt(dataSnapshot.child("1").getValue().toString());
+                }
+                if (dataSnapshot.child("2").exists()){
+                    s2=Integer.parseInt(dataSnapshot.child("2").getValue().toString());
+                }
+                if (dataSnapshot.child("3").exists()){
+                    s3=Integer.parseInt(dataSnapshot.child("3").getValue().toString());
+                }
+                if (dataSnapshot.child("4").exists()){
+                    s4=Integer.parseInt(dataSnapshot.child("4").getValue().toString());
+                }
+                if (dataSnapshot.child("5").exists()){
+                    s5=Integer.parseInt(dataSnapshot.child("5").getValue().toString());
+                }
+                if (dataSnapshot.child("6").exists()){
+                    s6=Integer.parseInt(dataSnapshot.child("6").getValue().toString());
+                }
+
+                sumSup=s1+s2+s3+s4+s5+s6;
+                Toast.makeText(StudentCGPA.this, "supply=="+sumSup, Toast.LENGTH_SHORT).show();
+                btnSupply.setText(""+sumSup);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+        btnAppr.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     database=FirebaseDatabase.getInstance();
@@ -150,7 +207,18 @@ TextView tvName,tvReg;
             });
 
 
+        btnIncor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database=FirebaseDatabase.getInstance();
+                myRef = database.getReference("tekerala").child("" + r).child("permission");
+                myRef.setValue(0);
 
+
+
+
+            }
+        });
 
 
 

@@ -40,7 +40,7 @@ android:scrollbarSize="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/btn_select_semester"
         android:text="Next"
-        android:background="@drawable/roundbutton"
+        android:background="@drawable/bg_button"
         android:textColor="#fff"
 
         />
