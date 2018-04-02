@@ -29,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
+import static android.os.SystemClock.sleep;
+
 /**
  * Created by PREMjITH
  * Created on 09-Jun-17.
@@ -36,11 +38,12 @@ import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthActivity extends AppCompatActivity implements
         View.OnClickListener {
-ProgressBar pp;
+
     EditText mPhoneNumberField, mVerificationField,txtUniqueId,txtUsername;
     Button mStartButton, mVerifyButton, mResendButton;
     FirebaseDatabase database;
     DatabaseReference myRef;
+    ProgressBar pgrBarPhon;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
@@ -52,7 +55,7 @@ int usNum=0,x;
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
-        pp=findViewById(R.id.load_bar);
+        pgrBarPhon =findViewById(R.id.pBar3_phone);
         txtUsername=findViewById(R.id.txt_user_name);
         txtUniqueId=findViewById(R.id.txt_college_id);
         mPhoneNumberField =  findViewById(R.id.field_phone_number);
@@ -61,6 +64,8 @@ int usNum=0,x;
         mVerifyButton =  findViewById(R.id.button_verify_phone);
         mResendButton =  findViewById(R.id.button_resend);
 
+
+        pgrBarPhon.setVisibility(View.GONE);
         mStartButton.setOnClickListener(this);
         mVerifyButton.setOnClickListener(this);
         mResendButton.setOnClickListener(this);
@@ -99,7 +104,7 @@ int usNum=0,x;
 
 
         x=getIntent().getExtras().getInt("ad");
-        Toast.makeText(this, "oncre auth x="+x, Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -113,7 +118,7 @@ int usNum=0,x;
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential:success");
-                            Toast.makeText(PhoneAuthActivity.this, "signInWithCredential:success", Toast.LENGTH_SHORT).show();
+                            pgrBarPhon.setVisibility(View.VISIBLE);
                             FirebaseUser user = task.getResult().getUser();
                             // Write a message to the database
                             if(mAuth!=null){
@@ -124,7 +129,7 @@ int usNum=0,x;
                             if (x==1) {
 
 
-                                Toast.makeText(PhoneAuthActivity.this, "User=" + x, Toast.LENGTH_SHORT).show();
+
                                 myRef = database.getReference(""+p).child("user");
                                 myRef.setValue(""+x);
                                 usNum=1;
@@ -138,25 +143,25 @@ int usNum=0,x;
                             }
 
                              myRef = database.getReference(""+p).child("collegeID");
-                            Toast.makeText(PhoneAuthActivity.this, ""+txtUniqueId.getText(), Toast.LENGTH_SHORT).show();
+
 
                             myRef.setValue(""+txtUniqueId.getText());
 
 
 
                             myRef = database.getReference(""+p).child("username");
-                            Toast.makeText(PhoneAuthActivity.this, ""+txtUsername.getText(), Toast.LENGTH_SHORT).show();
+
 
                             myRef.setValue(""+txtUsername.getText());
                             x=getIntent().getExtras().getInt("ad");
-                            Toast.makeText(PhoneAuthActivity.this, "phon auth x="+x, Toast.LENGTH_SHORT).show();
+
                             //startActivity(new Intent(PhoneAuthActivity.this, MainActivity.class));
                             Intent in=new Intent(getApplicationContext(),MainActivity.class);
                             in.putExtra("k",x);
-                            Toast.makeText(PhoneAuthActivity.this, "usnum="+usNum, Toast.LENGTH_SHORT).show();
+
                             startActivity(in);
                             finish();
-                            Toast.makeText(PhoneAuthActivity.this, ""+user, Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -200,6 +205,7 @@ int usNum=0,x;
     private boolean validatePhoneNumber() {
         String phoneNumber = mPhoneNumberField.getText().toString();
         if (TextUtils.isEmpty(phoneNumber)) {
+            pgrBarPhon.setVisibility(View.VISIBLE);
             mPhoneNumberField.setError("Invalid phone number.");
             return false;
         }
@@ -210,9 +216,10 @@ int usNum=0,x;
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
+            pgrBarPhon.setVisibility(View.VISIBLE);
+
             x=getIntent().getExtras().getInt("ad");
-            Toast.makeText(this, "U are a user", Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "x="+x, Toast.LENGTH_SHORT).show();
+
             Intent in=new Intent(this,MainActivity.class);
             in.putExtra("k",x);
             startActivity(in);
@@ -225,12 +232,17 @@ int usNum=0,x;
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_start_verification:
+                pgrBarPhon.setVisibility(View.VISIBLE);
                 if (!validatePhoneNumber()) {
+
+
                     return;
+
                 }
                 startPhoneNumberVerification(mPhoneNumberField.getText().toString());
                 break;
             case R.id.button_verify_phone:
+                pgrBarPhon.setVisibility(View.VISIBLE);
                 String code = mVerificationField.getText().toString();
                 if (TextUtils.isEmpty(code)) {
                     mVerificationField.setError("Cannot be empty.");
@@ -240,6 +252,7 @@ int usNum=0,x;
                 verifyPhoneNumberWithCode(mVerificationId, code);
                 break;
             case R.id.button_resend:
+                pgrBarPhon.setVisibility(View.VISIBLE);
                 resendVerificationCode(mPhoneNumberField.getText().toString(), mResendToken);
                 break;
         }
@@ -248,7 +261,10 @@ int usNum=0,x;
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
 
-
-
+        pgrBarPhon.setVisibility(View.GONE);
+    }
 }

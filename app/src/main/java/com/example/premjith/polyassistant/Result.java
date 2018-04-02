@@ -37,7 +37,8 @@ public class Result extends AppCompatActivity {
         b=getIntent().getExtras().getInt("B");
         s=getIntent().getExtras().getInt("S");
         btnAggragate.setText(""+rr);
-        btnResultView.setText(""+r);
+        String s = String.format("%.2f", r);
+        btnResultView.setText(s);
         if(r>9){
             tvComment.setText("Excellent...");
         }else if(r>8){
@@ -68,7 +69,7 @@ public class Result extends AppCompatActivity {
 
             }
         });
-            myRef=database.getReference().child(""+p).child("branch").child(""+b).child("semester").child(""+s).child("supply");
+           /* myRef=database.getReference(""+p).child("branch").child(""+b).child("semester").child(""+s).child("supply");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
 
@@ -87,8 +88,8 @@ public class Result extends AppCompatActivity {
 
                 }
             });
-
-        myRef=database.getReference().child(""+p).child("branch").child(""+b).child("semester").child(""+s).child("cgpa");
+*/    /*  database=FirebaseDatabase.getInstance();
+        myRef=database.getReference(""+p).child("branch").child(""+b).child("semester").child(""+s).child("cgpa");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
 
@@ -106,7 +107,7 @@ public class Result extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
 
 

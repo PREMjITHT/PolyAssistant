@@ -50,13 +50,13 @@ public class StudentDetails extends AppCompatActivity implements
         }
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("" + pNumber).child("collegeID");
-        Toast.makeText(this, "phon test"+pNumber, Toast.LENGTH_SHORT).show();
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     CID=Integer.parseInt(dataSnapshot.getValue().toString());
-                    Toast.makeText(StudentDetails.this, "CID="+CID, Toast.LENGTH_SHORT).show();
+
                 }}
 
             @Override
@@ -95,7 +95,7 @@ public class StudentDetails extends AppCompatActivity implements
         in.putExtra("MY_REG", reg);
        in.putExtra("MY_CID", CID);
        startActivity(in);
-       Toast.makeText(StudentDetails.this, "cid moooooosaa=" + CID, Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -119,7 +119,7 @@ public class StudentDetails extends AppCompatActivity implements
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     collegeID=Integer.parseInt(dataSnapshot.getValue().toString());
-                    Toast.makeText(StudentDetails.this, "id="+collegeID, Toast.LENGTH_SHORT).show();
+
                 }}
 
             @Override

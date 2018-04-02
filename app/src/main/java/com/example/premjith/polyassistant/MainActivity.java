@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -26,10 +28,11 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     NavigationView navigationView;
     android.support.v7.widget.Toolbar toolbar=null;
-
+    ProgressBar pb;
     private static final String TAG = "PhoneAuthActivity";
     private FirebaseAuth mAuth;
     int x;
+    View bb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         android.support.v7.widget.Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        pb=findViewById(R.id.pBar3_main);
+        bb = pb;
+        bb.setVisibility(View.GONE);
         Button mSignOutButton =  findViewById(R.id.sign_out_button);
         TextView fireBaseId =  findViewById(R.id.detail);
         mAuth = FirebaseAuth.getInstance();
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         x=getIntent().getExtras().getInt("k");
-        Toast.makeText(this, "main x="+x, Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity
 
                 switch (v.getId()) {
                     case R.id.sign_out_button:
+                        bb.setVisibility(View.VISIBLE);
 
                         Toast.makeText(MainActivity.this, "Logging out...", Toast.LENGTH_SHORT).show();
                         mAuth.signOut();
@@ -202,6 +209,7 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.nav_Logout:
+                bb.setVisibility(View.VISIBLE);
                 Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
                 startActivity(new Intent(MainActivity.this, UserSelectionActivity.class));
@@ -217,11 +225,9 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        bb.setVisibility(View.GONE);
+    }
 }

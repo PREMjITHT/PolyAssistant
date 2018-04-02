@@ -19,6 +19,8 @@
         android:textSize="20sp" />
 
     <LinearLayout
+        android:layout_gravity="center"
+        android:gravity="center"
         android:id="@+id/phone_auth_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -100,8 +102,25 @@
         </LinearLayout>
 
     </LinearLayout>
-<android.support.v4.widget.ContentLoadingProgressBar
-    android:layout_width="match_parent"
-    android:layout_height="20dp"
-    android:id="@+id/load_bar"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:orientation="vertical">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:id="@+id/pBar3_phone"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="25dp"
+            android:minWidth="100dp"
+            android:max="10000"
+            android:indeterminate="true"
+            android:progress="1"
+            android:visibility="invisible"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>

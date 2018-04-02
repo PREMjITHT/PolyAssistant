@@ -114,11 +114,10 @@ public class Subjects extends AppCompatActivity {
         SemNumber = getIntent().getExtras().getInt("MY_SEM");
         classRoom=getIntent().getExtras().getString("MY_CLASS");
         reg=getIntent().getExtras().getString("MY_REG");
-        Toast.makeText(this, "classroommmmmmm="+classRoom, Toast.LENGTH_SHORT).show();
+
 
         BranchNumber = getIntent().getExtras().getInt("MY_BRANCH");
         CID=getIntent().getExtras().getInt("MY_CID");
-        Toast.makeText(this, "CID subjects...................."+CID, Toast.LENGTH_SHORT).show();
 
         if (BranchNumber==1){
             if (SemNumber==1){
@@ -148,7 +147,7 @@ public class Subjects extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         if(mAuth!=null) {
             pNumber = mAuth.getCurrentUser().getPhoneNumber();
-            Toast.makeText(this, "Phone number:"+pNumber, Toast.LENGTH_SHORT).show();
+
 
         }
 
@@ -255,7 +254,7 @@ public class Subjects extends AppCompatActivity {
                 database=FirebaseDatabase.getInstance();
                 myRef=database.getReference("collegeID").child(""+CID).child(""+classRoom).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child(""+SemNumber).child("cgpa");
                 myRef.setValue(""+cgpa);
-                myRef=database.getReference("tekerala").child(""+reg).child("cgpa").push();
+                myRef=database.getReference("tekerala").child(""+reg).child("cgpa").child(""+SemNumber);
                 myRef.setValue(""+cgpa);
 
                 cgpaSum+=cgpa;

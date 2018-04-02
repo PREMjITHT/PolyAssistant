@@ -10,7 +10,19 @@
     android:fitsSystemWindows="true"
     android:id="@+id/line_snackbar"
     tools:context=".UserSelectionActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+    </android.support.design.widget.AppBarLayout>
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,6 +32,8 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="@dimen/activity_vertical_margin"
+        android:layout_weight="2"
+        android:layout_margin="40dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -29,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/play_again"
+            android:visibility="invisible"
             android:background="@drawable/gradient"/>
         <Button
             android:layout_width="match_parent"
@@ -53,19 +68,27 @@
             android:background="@drawable/roundbutton"/>
 
     </LinearLayout>
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
+        android:gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:layout_height="80sp"
+        android:orientation="vertical">
+        <ProgressBar
+            android:layout_gravity="center"
+            android:id="@+id/pBar3_user"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="25dp"
+            android:minWidth="100dp"
+            android:max="10000"
+            android:indeterminate="true"
+            android:progress="1"
+            android:visibility="invisible"/>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-    </android.support.design.widget.AppBarLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
 

@@ -90,14 +90,14 @@ public class profilee extends AppCompatActivity
 
 
             case R.id.nav_Profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+
                 Intent i1= new Intent(profilee.this,profilee.class);
                 finish();
                 startActivity(i1);
                 break;
 
             case R.id.nav_About:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+
                 Intent i5= new Intent(profilee.this,About.class);
                 finish();
                 startActivity(i5);

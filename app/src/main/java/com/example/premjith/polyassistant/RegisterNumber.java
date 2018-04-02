@@ -1,6 +1,7 @@
 package com.example.premjith.polyassistant;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class RegisterNumber extends AppCompatActivity {
 
         branchID=getIntent().getExtras().getInt("MY_BRANCH");
         classRoom=getIntent().getExtras().getString("MY_CLASS");
-        Toast.makeText(context, "class====="+classRoom, Toast.LENGTH_SHORT).show();
+
 
         lvReg=findViewById(R.id.listv_register);
         final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,RegList);
@@ -53,11 +54,11 @@ public class RegisterNumber extends AppCompatActivity {
            @Override
            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                String value=dataSnapshot.getValue().toString();
-               Toast.makeText(RegisterNumber.this, "value"+value, Toast.LENGTH_SHORT).show();
+
                RegList.add(value);
                arrayAdapter.notifyDataSetChanged();
 
-               Toast.makeText(context, "register num activity="+collegeID, Toast.LENGTH_SHORT).show();
+
 
            }
 
@@ -90,8 +91,9 @@ public class RegisterNumber extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String text = lvReg.getItemAtPosition(position).toString().trim();
-                Toast.makeText(context, "register list"+text, Toast.LENGTH_SHORT).show();
-
+                Intent in=new Intent(getApplicationContext(),StudentCGPA.class);
+                in.putExtra("MY_REG",text);
+                startActivity(in);
 
 
             }

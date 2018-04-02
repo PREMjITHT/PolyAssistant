@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,14 +24,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static java.lang.Thread.sleep;
+
 public class UserSelectionActivity extends AppCompatActivity {
 Button btnAdmin,btnGuest,btnSuperAdmin;
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
      Toolbar mToolbar;
+     String  temp;
      String p;
+    View b2;
      LinearLayout linearLayout;
+    ProgressBar pgsBar,pgsHori;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +44,21 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         setContentView(R.layout.activity_user_selection);
         // Toolbar toolbar =findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+        pgsHori=findViewById(R.id.pBar3_user);
+          b2 = pgsHori;
+       // pgsBar=findViewById(R.id.pBar_user);
         btnAdmin = findViewById(R.id.btn_user_admin);
         btnGuest = findViewById(R.id.btn_user_guest);
-        //btnSuperAdmin=findViewById(R.id.btn_super_admin);
+        btnSuperAdmin=findViewById(R.id.btn_user_super_admin);
         linearLayout= findViewById(R.id.line_snackbar);
         mToolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        b2.setVisibility(View.GONE);
+
+        //View bSuperAdmin = btnSuperAdmin;
+       // bSuperAdmin.setVisibility(View.VISIBLE);
         if (isNetworkAvailable()){
 
-            Toast.makeText(this, "Online Mode", Toast.LENGTH_SHORT).show();
 
             Snackbar snackbar = Snackbar.make(linearLayout, "Online Mode...!", Snackbar.LENGTH_LONG);
             // Changing message text color
@@ -63,7 +75,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
 
             }
         }else {
-            Toast.makeText(this, "Offline Mode", Toast.LENGTH_SHORT).show();
+
 
             Snackbar snackbar = Snackbar.make(linearLayout, "Offline Mode...!", Snackbar.LENGTH_LONG);
             // Changing message text color
@@ -81,31 +93,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
             }
         }
 
-        if(mAuth!=null) {
-            p = mAuth.getCurrentUser().getPhoneNumber();
-            Toast.makeText(this, "Phone number:"+p, Toast.LENGTH_SHORT).show();
 
-        }
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference(""+p).child("user");
-
-
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Toast.makeText(UserSelectionActivity.this, "Entered", Toast.LENGTH_SHORT).show();
-                  String temp=dataSnapshot.getValue().toString();
-                    Toast.makeText(UserSelectionActivity.this, "temp="+temp, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
         findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,9 +108,10 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         btnGuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                b2.setVisibility(View.VISIBLE);
                 Intent in=new Intent(getApplicationContext(),StudentSearch.class);
                 startActivity(in);
-                Toast.makeText(UserSelectionActivity.this, "guest user..........", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -130,7 +119,11 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         btnAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-String u="admin";
+                //View b = pgsBar;
+                //b.setVisibility(View.VISIBLE);
+
+                b2.setVisibility(View.VISIBLE);
+                String u="admin";
                 Intent i = new Intent(getApplicationContext(), PhoneAuthActivity.class);
                 i.putExtra("ad",1);
                 startActivity(i);
@@ -138,16 +131,16 @@ String u="admin";
 
             }
         });
-        findViewById(R.id.btn_user_super_admin).setOnClickListener(new View.OnClickListener() {
+        btnSuperAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                b2.setVisibility(View.VISIBLE);
                 String u="superadmin";
                 Intent i = new Intent(getApplicationContext(),PhoneAuthActivity.class);
                 i.putExtra("ad",2);
                 startActivity(i);
             }
         });
-
 
 
     }
@@ -158,5 +151,10 @@ String u="admin";
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        b2.setVisibility(View.GONE);
+    }
 }

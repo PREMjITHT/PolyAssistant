@@ -90,7 +90,7 @@ public class Alert extends Activity {
 									long id) {
 
 				String text = lv.getItemAtPosition(position).toString().trim();
-				Toast.makeText(context, ""+text, Toast.LENGTH_SHORT).show();
+
 				Intent in=new Intent(context,SelectSemester.class);
 				if (x==1){
 					Intent i = new Intent(context, StudentDetails.class);

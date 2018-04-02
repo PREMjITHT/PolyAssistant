@@ -83,12 +83,12 @@ FirebaseAuth mAuth;
 
         switch (id){
             case R.id.nav_Profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+
                 Intent i1= new Intent(this,profilee.class);
                 startActivity(i1);
                 break;
             case R.id.nav_About:
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+
                 Intent i5= new Intent(this,About.class);
                 startActivity(i5);
                 break;

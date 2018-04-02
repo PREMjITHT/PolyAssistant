@@ -46,12 +46,28 @@
         />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:textSize="20sp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEMESTERS"/>
+    <LinearLayout
+
         android:layout_weight="1"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
             android:gravity="center"
             android:layout_weight="1"
@@ -62,12 +78,79 @@
             android:text="0"
             android:background="@drawable/roundbutton"
             android:layout_width="50dp"
+            android:id="@+id/btn_display_sem1"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Supply"/>
+            android:text="1"/>
         </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="0"
+                android:id="@+id/btn_display_sem2"
+                android:background="@drawable/roundbutton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"/>
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="0"
+                android:id="@+id/btn_display_sem3"
+                android:background="@drawable/roundbutton"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"/>
+        </LinearLayout><LinearLayout
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/btn_display_sem4"
+            android:text="0"
+            android:background="@drawable/roundbutton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"/>
+    </LinearLayout><LinearLayout
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="0"
+            android:id="@+id/btn_display_sem5"
+            android:background="@drawable/roundbutton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"/>
+    </LinearLayout>
         <LinearLayout
             android:layout_weight="1"
             android:gravity="center"
@@ -76,14 +159,16 @@
             android:layout_height="wrap_content">
             <Button
                 android:text="0"
+                android:id="@+id/btn_display_sem6"
                 android:background="@drawable/roundbutton"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Semester"/>
+                android:text="6"/>
         </LinearLayout>
+    </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_weight="1.5"
@@ -92,10 +177,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:layout_width="150sp"
-            android:layout_height="150sp"
-            android:textSize="150sp"
+            android:layout_width="120sp"
+            android:layout_height="120sp"
+            android:textSize="28sp"
+            android:id="@+id/btn_agg_big"
             android:backgroundTint="#fff"
+            android:text="Aggragate"
             android:background="@drawable/circle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aggragate"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:backgroundTint="#fff"
+            android:text="Supply"
+            android:background="@drawable/circle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supply"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <Button
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Approve"
+        android:id="@+id/btn_approve"
+        />
+
+    <Button
+        android:shadowColor="@color/colorPrimaryDark"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Incorrect"
+        android:id="@+id/btn_invalid"
+        />
     </LinearLayout>
 </LinearLayout>

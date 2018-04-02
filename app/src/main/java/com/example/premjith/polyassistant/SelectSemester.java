@@ -41,7 +41,6 @@ public class SelectSemester extends AppCompatActivity {
             reg=getIntent().getExtras().getString("MY_REG");
             branchID=getIntent().getExtras().getInt("MY_BRANCH");
             classRoom=getIntent().getExtras().getString("MY_CLASS");
-        Toast.makeText(this, "cid="+CID+"reg="+reg+"branch="+branchID+"class="+classRoom, Toast.LENGTH_SHORT).show();
 
 
          numberPicker = findViewById(R.id.np);
@@ -53,7 +52,6 @@ public class SelectSemester extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 semID = newVal;
-                //Toast.makeText(SelectSemester.this, "sem="+semID, Toast.LENGTH_SHORT).show();
                 tvSemNumber.setText(""+semID);
 
             }
@@ -67,8 +65,6 @@ public class SelectSemester extends AppCompatActivity {
             btnToScroll2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(SelectSemester.this, "sem="+semID, Toast.LENGTH_SHORT).show();
-
             Intent in=new Intent(getApplicationContext(),Subjects.class);
             in.putExtra("MY_CID",CID);
             in.putExtra("MY_REG",reg);
