@@ -31,11 +31,11 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
-     Toolbar mToolbar;
-     String  temp;
-     String p;
+    Toolbar mToolbar;
+    String  temp;
+    String p;
     View b2;
-     LinearLayout linearLayout;
+    LinearLayout linearLayout;
     ProgressBar pgsBar,pgsHori;
 
     @Override
@@ -57,6 +57,14 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
 
         //View bSuperAdmin = btnSuperAdmin;
        // bSuperAdmin.setVisibility(View.VISIBLE);
+
+
+
+
+
+
+
+
         if (isNetworkAvailable()){
 
 

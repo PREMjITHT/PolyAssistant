@@ -180,7 +180,7 @@ TextView tvName,tvReg;
                 }
 
                 sumSup=s1+s2+s3+s4+s5+s6;
-                Toast.makeText(StudentCGPA.this, "supply=="+sumSup, Toast.LENGTH_SHORT).show();
+
                 btnSupply.setText(""+sumSup);
             }
 

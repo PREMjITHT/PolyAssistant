@@ -12,14 +12,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class profilee extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
+    TextView txtName,txtPhone;
+    String pNumber;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     private FirebaseAuth mAuth;
     NavigationView navigationView;
     Toolbar toolbar=null;
@@ -30,10 +40,9 @@ public class profilee extends AppCompatActivity
         setContentView(R.layout.activity_profilee);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        txtName=findViewById(R.id.txt_pro_name);
+        txtPhone=findViewById(R.id.txt_pro_phone);
         //We dont need this.
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
 
@@ -45,6 +54,35 @@ public class profilee extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        mAuth=FirebaseAuth.getInstance();
+        if(mAuth!=null) {
+            pNumber = mAuth.getCurrentUser().getPhoneNumber();
+
+        }
+        txtName.setText(""+pNumber);
+
+
+        database= FirebaseDatabase.getInstance();
+        myRef=database.getReference(""+pNumber).child("username");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String sss = dataSnapshot.getValue().toString();
+                    txtName.setText(""+sss);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
     @Override

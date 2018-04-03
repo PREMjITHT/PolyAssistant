@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
+
     <include
         layout="@layout/app_bar_home"
         android:layout_width="match_parent"
@@ -23,5 +24,34 @@
         app:menu="@menu/activity_home_drawer_new" />
 
 
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textSize="50sp"
+            android:id="@+id/txt_pro_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Premjith"/>
+
+        <TextView
+            android:textSize="50sp"
+            android:id="@+id/txt_pro_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Premjith"/>
+
+
+
+
+
+    </LinearLayout>
+
 </android.support.v4.widget.DrawerLayout>
+
+
     <!-- copy from activity_home and paste it here.-->
+

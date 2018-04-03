@@ -29,6 +29,7 @@
         android:textSize="22sp"
         android:fontFamily="monospace"
         android:textColor="#fff"
+        android:id="@+id/tv_nav_name"
         android:textStyle="bold"
         android:text="Poly Assistant"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
