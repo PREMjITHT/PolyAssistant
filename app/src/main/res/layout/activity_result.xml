@@ -42,6 +42,7 @@ android:background="@drawable/gradient"
         android:layout_height="120sp"
         android:textSize="20sp"
         android:id="@+id/btn_supply"
+            android:text="0"
         android:textColor="#fff"
         android:background="@drawable/circle"/>
     <TextView

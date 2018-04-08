@@ -40,8 +40,8 @@ public class profilee extends AppCompatActivity
         setContentView(R.layout.activity_profilee);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        txtName=findViewById(R.id.txt_pro_name);
-        txtPhone=findViewById(R.id.txt_pro_phone);
+       // txtName=findViewById(R.id.txt_pro_name);
+        //txtPhone=findViewById(R.id.txt_pro_phone);
         //We dont need this.
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -61,7 +61,7 @@ public class profilee extends AppCompatActivity
             pNumber = mAuth.getCurrentUser().getPhoneNumber();
 
         }
-        txtName.setText(""+pNumber);
+//        txtName.setText(""+pNumber);
 
 
         database= FirebaseDatabase.getInstance();
@@ -71,7 +71,7 @@ public class profilee extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String sss = dataSnapshot.getValue().toString();
-                    txtName.setText(""+sss);
+  //                  txtName.setText(""+sss);
 
                 }
             }

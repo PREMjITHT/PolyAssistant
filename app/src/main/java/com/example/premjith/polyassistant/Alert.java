@@ -35,8 +35,11 @@ public class Alert extends Activity {
 	DatabaseReference myRef;
 	FirebaseAuth mAuth;
 	String p;
-	final Context context = this;
 	FloatingActionButton fab;
+
+
+	final Context context = this;
+
 	ArrayList<String> dataList=new ArrayList<>();
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -45,11 +48,19 @@ public class Alert extends Activity {
 		fab=findViewById(R.id.fab_butt);
 		lv=findViewById(R.id.listv_prompt);
 		// components from main
-
+		View xv = fab;
+//	xv.setVisibility(View.VISIBLE);
 		branchID= getIntent().getExtras().getInt("key");
 		x=getIntent().getExtras().getInt("ad");
 		final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,dataList);
 		lv.setAdapter(arrayAdapter);
+		if (x==1){
+
+			xv.setVisibility(View.VISIBLE);
+		}
+		else if (x==2){
+			xv.setVisibility(View.GONE);
+		}
 		database = FirebaseDatabase.getInstance();
 		myRef = database.getReference("classes");
 

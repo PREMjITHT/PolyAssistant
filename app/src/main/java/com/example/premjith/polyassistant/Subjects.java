@@ -101,6 +101,7 @@ public class Subjects extends AppCompatActivity {
 
 
 
+
         //Getting semester id from select semester activity
         SemNumber = getIntent().getExtras().getInt("MY_SEM");
         classRoom=getIntent().getExtras().getString("MY_CLASS");

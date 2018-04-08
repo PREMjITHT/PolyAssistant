@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +30,7 @@ public class RegisterNumber extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
+    TextView tvClass;
     ArrayList<String> RegList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,8 @@ public class RegisterNumber extends AppCompatActivity {
         branchID=getIntent().getExtras().getInt("MY_BRANCH");
         classRoom=getIntent().getExtras().getString("MY_CLASS");
 
-
+        tvClass=findViewById(R.id.tv_cls_room);
+        tvClass.setText(""+classRoom.toUpperCase());
         lvReg=findViewById(R.id.listv_register);
         final ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,RegList);
         lvReg.setAdapter(arrayAdapter);

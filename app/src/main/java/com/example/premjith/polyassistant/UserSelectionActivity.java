@@ -58,33 +58,19 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         //View bSuperAdmin = btnSuperAdmin;
        // bSuperAdmin.setVisibility(View.VISIBLE);
 
-
-
-
-
-
-
-
         if (isNetworkAvailable()){
-
-
             Snackbar snackbar = Snackbar.make(linearLayout, "Online Mode...!", Snackbar.LENGTH_LONG);
             // Changing message text color
             snackbar.setActionTextColor(Color.RED);
-
             // Changing action button text color
             View sbView = snackbar.getView();
             TextView textView =sbView.findViewById(android.support.design.R.id.snackbar_text);
             textView.setTextColor(Color.GREEN);
-
             snackbar.show();
             {
 
-
             }
         }else {
-
-
             Snackbar snackbar = Snackbar.make(linearLayout, "Offline Mode...!", Snackbar.LENGTH_LONG);
             // Changing message text color
             snackbar.setActionTextColor(Color.RED);
