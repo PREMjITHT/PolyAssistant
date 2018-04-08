@@ -200,12 +200,12 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_About:
                 Toast.makeText(this, "Version 1.0 beta", Toast.LENGTH_SHORT).show();
-                Intent i5= new Intent(getApplicationContext(),About.class);
-                startActivity(i5);
-                finish();
+
                 break;
             case R.id.nav_Settings:
                 Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(MainActivity.this, .class));
+                //finish();
 
                 break;
             case R.id.nav_Logout:
