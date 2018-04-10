@@ -462,10 +462,10 @@ public class Subjects extends AppCompatActivity {
 
 
         if (c==6){
-            Toast.makeText(this, "collegeIdinner func="+CID, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "studentid="+reg, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "branch="+BranchNumber, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "semester="+SemNumber, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "collegeIdinner func="+CID, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "studentid="+reg, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "branch="+BranchNumber, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "semester="+SemNumber, Toast.LENGTH_SHORT).show();
             database = FirebaseDatabase.getInstance();
             myRef = database.getReference("collegeID").child(""+CID).child(""+classRoom).child("student").child(""+reg).child("branch").child(""+BranchNumber).child("semester").child("" +SemNumber).child("slote").child(""+1);
 
@@ -474,7 +474,7 @@ public class Subjects extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                 SpinnerSlot1.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                    Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                //    Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
             }}
 
             @Override
@@ -492,7 +492,7 @@ public class Subjects extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
                         SpinnerSlot2.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+               //         Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
                     }}
 
                 @Override
@@ -510,7 +510,7 @@ public class Subjects extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
                         SpinnerSlot3.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+                 //       Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
                     }}
 
                 @Override
@@ -529,7 +529,7 @@ public class Subjects extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
                         SpinnerSlot4.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
                     }}
 
                 @Override
@@ -548,7 +548,7 @@ public class Subjects extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
                         SpinnerSlot5.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+  //                      Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
                     }}
 
                 @Override
@@ -567,7 +567,7 @@ public class Subjects extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()){
                         SpinnerSlot6.setSelection(Integer.parseInt(dataSnapshot.getValue().toString()));
-                        Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
+       //                 Toast.makeText(Subjects.this, "restore value="+Integer.parseInt(dataSnapshot.getValue().toString()), Toast.LENGTH_SHORT).show();
                     }}
 
                 @Override
