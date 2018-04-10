@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@drawable/gradient"
+    android:background="@drawable/gradient"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.example.premjith.polyassistant.Result">
 
     <Button
+        android:id="@+id/btnResultView"
         android:layout_width="200sp"
         android:layout_height="200sp"
-        android:textSize="50sp"
-        android:id="@+id/btnResultView"
+        android:background="@drawable/circle"
         android:textColor="#fff"
-        android:background="@drawable/circle"/>
+        android:textSize="50sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CGPA"
         android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="CGPA"
         android:textColor="#fff"
-        android:textSize="25dp"
-        android:gravity="center"/>
+        android:textSize="25dp" />
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:gravity="center"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content">
-<LinearLayout
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-        <Button
+        android:orientation="horizontal">
 
-        android:layout_width="120sp"
-        android:layout_height="120sp"
-        android:textSize="20sp"
-        android:id="@+id/btn_supply"
-            android:text="0"
-        android:textColor="#fff"
-        android:background="@drawable/circle"/>
-    <TextView
-        android:textSize="20dp"
-        android:fontFamily="monospace"
-        android:textColor="#fff"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Supply"/>
-</LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_weight="1">
-    <Button
+            android:orientation="vertical">
 
-        android:layout_width="120sp"
-        android:layout_height="120sp"
-        android:textSize="20sp"
-        android:id="@+id/btn_aggragate_cgpa"
-        android:textColor="#fff"
-        android:background="@drawable/circle"/>
-            <TextView
-                android:textSize="20dp"
-                android:fontFamily="monospace"
+            <Button
+
+                android:id="@+id/btn_supply"
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:background="@drawable/circle"
+                android:text="0"
                 android:textColor="#fff"
-                android:gravity="center"
+                android:textSize="20sp" />
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aggragate"/>
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:text="Supply"
+                android:textColor="#fff"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+
+                android:id="@+id/btn_aggragate_cgpa"
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:background="@drawable/circle"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:text="Aggragate"
+                android:textColor="#fff"
+                android:textSize="20dp" />
         </LinearLayout>
     </LinearLayout>
+
     <TextView
+        android:id="@+id/tv_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:textSize="25dp"
-        android:id="@+id/tv_comment"
         android:text="Comments"
         android:textAlignment="center"
-        />
-    <Button
-        android:layout_width="150sp"
-
-        android:layout_height="wrap_content"
-        android:text="Done"
-        android:id="@+id/btn_next"
         android:textColor="#fff"
-        android:background="@drawable/bg_button"/>
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btn_next"
+
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button"
+        android:text="Done"
+        android:textColor="#fff" />
 
 
 </LinearLayout>

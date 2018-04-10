@@ -34,7 +34,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
     Toolbar mToolbar;
     String  temp;
     String p;
-    View b2;
+    View b2,vUserAdmin,vUserSuper;
     LinearLayout linearLayout;
     ProgressBar pgsBar,pgsHori;
 
@@ -54,6 +54,9 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
         mToolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         b2.setVisibility(View.GONE);
+        vUserAdmin=btnAdmin;
+        vUserSuper=btnSuperAdmin;
+
 
         //View bSuperAdmin = btnSuperAdmin;
        // bSuperAdmin.setVisibility(View.VISIBLE);
@@ -115,7 +118,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
             public void onClick(View v) {
                 //View b = pgsBar;
                 //b.setVisibility(View.VISIBLE);
-
+                //vUserSuper.setVisibility(View.GONE);
                 b2.setVisibility(View.VISIBLE);
                 String u="admin";
                 Intent i = new Intent(getApplicationContext(), PhoneAuthActivity.class);
@@ -133,6 +136,7 @@ Button btnAdmin,btnGuest,btnSuperAdmin;
                 Intent i = new Intent(getApplicationContext(),PhoneAuthActivity.class);
                 i.putExtra("ad",2);
                 startActivity(i);
+               // vUserAdmin.setVisibility(View.GONE);
             }
         });
 

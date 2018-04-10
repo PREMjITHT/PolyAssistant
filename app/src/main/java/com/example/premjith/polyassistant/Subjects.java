@@ -264,6 +264,7 @@ public class Subjects extends AppCompatActivity {
                 n15.putExtra("S", SemNumber);
                 n15.putExtra("B",BranchNumber);
                 n15.putExtra("A",aggr);
+                n15.putExtra("SUPPLY",supp);
                 startActivity(n15);
 
 

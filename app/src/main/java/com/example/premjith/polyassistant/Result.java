@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Result extends AppCompatActivity {
     float r=0,rr=0;
-    int count=1;
+    int count=1,supply;
     String p,s1,s2;
     int flag=1,b,s;
     Button btnResultView,btnNextSem,btnSupply,btnAggragate;
@@ -36,9 +38,12 @@ public class Result extends AppCompatActivity {
         p=getIntent().getExtras().getString("phon");
         b=getIntent().getExtras().getInt("B");
         s=getIntent().getExtras().getInt("S");
+        supply=getIntent().getExtras().getInt("SUPPLY");
+        Toast.makeText(this, "cgpa"+r, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "supp"+supply, Toast.LENGTH_SHORT).show();
         btnAggragate.setText(""+rr);
-        String s = String.format("%.2f", r);
-        btnResultView.setText(s);
+        String s2 = String.format("%.2f", r);
+        btnResultView.setText(s2);
         if(r>9){
             tvComment.setText("Excellent...");
         }else if(r>8){
@@ -49,7 +54,9 @@ public class Result extends AppCompatActivity {
             tvComment.setText("Keep trying");
         }
 
-
+        btnResultView.setText(""+r);
+        btnAggragate.setText(""+rr);
+        btnSupply.setText(""+supply);
 
             database= FirebaseDatabase.getInstance();
         myRef=database.getReference().child(""+p).child("branch").child(""+b).child("total");

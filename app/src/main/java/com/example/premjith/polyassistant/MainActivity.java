@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
                Intent i1= new Intent(getApplicationContext(),profilee.class);
                 startActivity(i1);
-                finish();
+                //finish();
                 break;
 
             case R.id.nav_About:
